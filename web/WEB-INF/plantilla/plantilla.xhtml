@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:h="http://xmlns.jcp.org/jsf/html"
+          xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<h:head>
+    <h:outputStylesheet library="css" name="layout.css"/>
+    <h:outputScript library="js/jquery" name="jquery.js"/>
+    <meta charset="UTF-8">
+</h:head>
+<h:body lang="es">
+<header id="header">
+<ui:insert name="cabecera">
+</ui:insert></header>
+<main id="content" class="table">
+	<nav id="nav" class="cell">
+		<p>Menu</p>
+		<ui:insert name="menu"/>
+	</nav>
+	<article id="center" class="cell">
+		<ui:insert name="contenido"/>
+	</article>
+</main>
+<footer id="footer">
+</footer>
+</h:body>
+</html>

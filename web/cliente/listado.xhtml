@@ -1,0 +1,43 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                template="/WEB-INF/plantilla/entidad.xhtml">
+
+    <ui:define name="content">
+        <h1>Listado de Clientes </h1>
+        <h:form>
+            <h:dataTable var="cliente" value="#{clienteCtrl.clientes}">
+                <h:column>
+                    <f:facet name="header">ID</f:facet>
+                #{cliente.id}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Nombre</f:facet>
+                #{cliente.nombre}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">DNI</f:facet>
+                #{cliente.dni}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Socio</f:facet>
+                ${cliente.socio?"Sí":"No"}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Opciones</f:facet>
+                    <h:button value="Visualiza" outcome="visualiza">
+                        <f:param name="id" value="#{cliente.id}" /></h:button>&#160;
+                    <h:button value="Edita" outcome="edita" >
+                        <f:param name="id" value="#{cliente.id}" /></h:button>&#160;
+                    <h:commandButton value="Borra" action="#{clienteCtrl.borra(cliente)}" />
+                </h:column> 
+            </h:dataTable>
+        </h:form>
+    </ui:define>
+    <ui:define name="left">
+        <h:link value="Clientes" outcome="index"/><br/>
+        <h:link value='Nuevo Cliente' outcome="alta"/><br/>
+    </ui:define>
+
+    </ui:composition>

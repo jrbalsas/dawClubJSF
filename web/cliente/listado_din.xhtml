@@ -1,0 +1,52 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                template="/WEB-INF/plantilla/entidad.xhtml">
+
+    <ui:define name="content">
+        <ui:debug />
+        <h1>Listado de Clientes Editable </h1>
+        <h:messages class="warn"/>
+        <h:form>
+            <h:dataTable var="cliente" value="#{clienteCtrl.clientes}" >
+                <h:column>
+                    <f:facet name="header">ID</f:facet>
+                #{cliente.id}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Nombre</f:facet>
+                    <h:outputText value="#{cliente.nombre}" rendered="#{!clienteCtrl.isEditable(cliente.id)}"/>
+                    <h:inputText value="#{cliente.nombre}" rendered="#{clienteCtrl.isEditable(cliente.id)}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">DNI</f:facet>
+                    <h:outputText value="#{cliente.dni}" rendered="#{!clienteCtrl.isEditable(cliente.id)}"/>
+                    <h:inputText value="#{cliente.dni}" rendered="#{clienteCtrl.isEditable(cliente.id)}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Socio</f:facet>
+                    <h:outputText value="#{cliente.socio?'Sí':'No'}" rendered="#{!clienteCtrl.isEditable(cliente.id)}"/>
+                    <h:selectBooleanCheckbox value="#{cliente.socio}" rendered="#{clienteCtrl.isEditable(cliente.id)}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Opciones</f:facet>
+                    <h:panelGroup rendered="#{!clienteCtrl.isEditable(cliente.id)}">
+                        <h:button value="Visualiza" outcome="visualiza">
+                            <f:param name="id" value="#{cliente.id}" /></h:button>&#160;
+                        <h:commandButton value="Edita" action="#{clienteCtrl.setEditRow(cliente.id)}" />&#160;
+                        <h:commandButton value="Borra" action="#{clienteCtrl.borra(cliente)}" />
+                    </h:panelGroup>
+                    <h:panelGroup rendered="#{clienteCtrl.isEditable(cliente.id)}">
+                        <h:commandButton value="Guarda" action="#{clienteCtrl.guarda(cliente)}"   />&#160;
+                        <h:commandButton value="Cancela" action="#{clienteCtrl.setEditRow(0)}" immediate="true" />&#160;
+                    </h:panelGroup>
+                </h:column> 
+            </h:dataTable>
+        </h:form>
+    </ui:define>
+    <ui:define name="left">
+        <h:link value='Nuevo Cliente' outcome="alta"/><br/>
+    </ui:define>
+
+    </ui:composition>

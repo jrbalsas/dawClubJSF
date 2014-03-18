@@ -1,0 +1,36 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/WEB-INF/plantilla/entidad.xhtml">
+
+        <ui:define name="content">
+
+            <h1>Alta Cliente</h1>
+        <h:form >
+           Nombre: <h:inputText label="Nombre" id="idNombre" value="#{clienteCtrl.cliente.nombre}" required="true">
+                    <!--f:validateLength minimum="4" maximum="25"/-->
+                </h:inputText>
+                <h:message for="idNombre" /><br/>
+           DNI: <h:inputText label="DNI" id="idDNI" value="#{clienteCtrl.cliente.dni}" required="true">
+                    <!--f:validateRegex pattern="\d{7,8}-?[a-zA-Z]" /-->
+                </h:inputText>
+                <h:message for="idDNI"/><br/>
+           Socio: <h:selectBooleanCheckbox label="Socio" value="#{clienteCtrl.cliente.socio}" >
+               <f:ajax render="idTipoSocio" execute="@this"/>
+           </h:selectBooleanCheckbox> (marcar para acceder a tipo de socio)<br/>
+           <h:panelGroup id="idTipoSocio" >
+               <h:panelGrid columns="2" rendered="#{clienteCtrl.cliente.socio}">    
+                   Tipo Socio:
+                   <h:selectOneListbox required="true">
+                       <f:selectItem itemValue="1" itemLabel="Gold" />
+                       <f:selectItem itemValue="2" itemLabel="Premium" />
+                       <f:selectItem itemValue="3" itemLabel="Standard" />
+                   </h:selectOneListbox>
+               </h:panelGrid>
+           </h:panelGroup>
+           <h:commandButton value="Guardar" action="#{clienteCtrl.crea}"/>
+           <h:button value="Cancelar" outcome="index" />
+        </h:form>
+        </ui:define>
+    </ui:composition>
