@@ -1,11 +1,11 @@
-dawClubJSF
+dawClub using JSF
 ==========
 
-Sample Netbeans project JSF CRUD Web App
+Sample Netbeans project with JSF CRUD Web App
 
 Features:
 -------------
-- Simple DAOList for testing purpouse
+- Simple DAOList for testing purpose
 - Sample DAOJDBC implementation
 - Sample Glassfish Connection Pool configuration file
 - Uses CDI with qualifiers for DAO selection
