@@ -37,17 +37,21 @@ public class ClienteDAOList implements ClienteDAO, Serializable{
 
     @Override
     public boolean crea(Cliente c) {
-        c.setId(idCliente++);
-        clientes.add(c);
+        Cliente nc=new Cliente(c);
+        nc.setId(idCliente);
+        clientes.add(nc);
+        c.setId(idCliente);
+        idCliente++;
         return true;
     }
         
     @Override
     public boolean guarda(Cliente c) {
         boolean result=false;
+        Cliente nc=new Cliente(c);
         for (int i=0; i<clientes.size();i++) {
-            if (clientes.get(i).getId()==c.getId()) {
-                clientes.set(i, c);
+            if (clientes.get(i).getId()==nc.getId()) {
+                clientes.set(i, nc);
                 result=true;
             }
         }       

@@ -25,6 +25,14 @@ public class Cliente {
         this.socio=socio;
     }
 
+    /**Copy constructor*/
+    public Cliente(Cliente c) {
+        this.id=c.id;
+        this.nombre=c.nombre;
+        this.dni=c.dni;
+        this.socio=c.socio;
+    }
+    
     /**
      * @return the id
      */
