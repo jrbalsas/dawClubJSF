@@ -2,7 +2,6 @@ package daw.club.model.dao;
 
 import daw.club.model.Cliente;
 import daw.club.qualifiers.DAOJdbc;
-import daw.club.model.dao.ClienteDAO;
 import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,9 +13,10 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.Resource;
-
+import javax.enterprise.context.Dependent;
 import javax.sql.DataSource;
 
+@Dependent  //Elegible for Dependency Injection
 @DAOJdbc
 public class ClienteDAOJDBC implements ClienteDAO, Serializable {
     private static final String dbTable="Clientes";

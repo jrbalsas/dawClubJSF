@@ -5,7 +5,9 @@ import daw.club.qualifiers.DAOList;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.enterprise.context.Dependent;
 
+@Dependent      //Elegible for Dependency Injection
 @DAOList
 public class ClienteDAOList implements ClienteDAO, Serializable{
 
