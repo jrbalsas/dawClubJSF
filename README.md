@@ -19,5 +19,5 @@ Requeriments:
 --------------
 - Glassfish +4 required (for CDI annotations)
 - For DAOJdbc testing a JDBC database connection required, i.e. DerbyDB (edit glassfish-resources.xml to adapt connection pool for your database)
-- WEB-INF/db.sql can be used to create required table into database
+- WEB-INF/DBInitScript.sql can be used to create required table into database
 

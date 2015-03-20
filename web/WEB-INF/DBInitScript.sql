@@ -3,11 +3,11 @@ DROP TABLE Clientes;
 
 create table Clientes
 (
-	ID INTEGER default AUTOINCREMENT: start 1 increment 1 not null primary key,
+	ID INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
 	DNI VARCHAR(10),
 	NOMBRE VARCHAR(50),
 	SOCIO BOOLEAN
-)
+);
 
 -- Insert sample records
 insert into Clientes (dni,nombre,socio) VALUES ('11111111-A','Manuel García',true);
