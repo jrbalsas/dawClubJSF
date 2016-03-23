@@ -1,4 +1,4 @@
-package daw.club.qualifiers;
+package com.daw.club.qualifiers;
 
 import static java.lang.annotation.ElementType.TYPE;
 import static java.lang.annotation.ElementType.FIELD;

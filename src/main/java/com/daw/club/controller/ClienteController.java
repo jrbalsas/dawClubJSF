@@ -1,9 +1,9 @@
-package daw.club.controller;
+package com.daw.club.controller;
 
-import daw.club.model.Cliente;
-import daw.club.model.dao.ClienteDAO;
-import daw.club.qualifiers.DAOJdbc;
-import daw.club.qualifiers.DAOList;
+import com.daw.club.model.Cliente;
+import com.daw.club.model.dao.ClienteDAO;
+import com.daw.club.qualifiers.DAOJdbc;
+import com.daw.club.qualifiers.DAOList;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;

@@ -1,7 +1,7 @@
-package daw.club.model.dao;
+package com.daw.club.model.dao;
 
-import daw.club.model.Cliente;
-import daw.club.qualifiers.DAOList;
+import com.daw.club.model.Cliente;
+import com.daw.club.qualifiers.DAOList;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;

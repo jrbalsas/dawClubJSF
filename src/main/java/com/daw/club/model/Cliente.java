@@ -1,9 +1,10 @@
-package daw.club.model;
+package com.daw.club.model;
 
+import java.io.Serializable;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
-public class Cliente {
+public class Cliente implements Serializable {
     private int id;
     @Size(min=4,max=25)
     private String nombre;
