@@ -39,13 +39,16 @@ public class ClienteController implements Serializable {
     
     //Model access
     public List<Cliente> getClientes() {
+        //Get clientes from DAO only when creating Controller
+        //on entering ViewScope. Next calls reuse data if continue
+        //in ViewScope p.e. generating list view
         if (lc==null)
                 lc=clienteDAO.buscaTodos();
         return lc;
     }
-    public void setClientes (List<Cliente> lc) {
-        this.lc=lc;
-    }
+//    public void setClientes (List<Cliente> lc) {
+//        this.lc=lc;
+//    }
 
     public Cliente getCliente () {
         return c;
@@ -114,6 +117,7 @@ public class ClienteController implements Serializable {
 
         clienteDAO.guarda(cliente);
         editRow=0;
+        //force get data from DAO (see getClientes() )
         lc=null;
     }        
     

@@ -5,14 +5,14 @@ import com.daw.club.qualifiers.DAOList;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import javax.enterprise.context.Dependent;
+import javax.enterprise.context.ApplicationScoped;
 
-@Dependent      //Elegible for Dependency Injection
+@ApplicationScoped      //Elegible for Dependency Injection
 @DAOList
 public class ClienteDAOList implements ClienteDAO, Serializable{
 
-    private static ArrayList<Cliente> clientes=null;
-    private static int idCliente = 1;
+    private  ArrayList<Cliente> clientes=null;
+    private  int idCliente = 1;
 
     public ClienteDAOList() {
         if (clientes == null) {
