@@ -4,33 +4,35 @@
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 template="/WEB-INF/plantilla/entidad.xhtml">
 
-        <ui:define name="content">
-
-            <h1>Alta Cliente</h1>
-        <h:form >
-           Nombre: <h:inputText label="Nombre" id="idNombre" value="#{clienteCtrl.cliente.nombre}" required="true">
-                    <!--f:validateLength minimum="4" maximum="25"/-->
+    <ui:define name="content">
+        <h1>Alta Cliente</h1>
+        <h:form styleClass="well" >
+            <label>Nombre:</label><h:inputText styleClass="form-control" label="Nombre" id="idNombre"
+                                 value="#{clienteCtrl.cliente.nombre}" required="true">
+                <!--f:validateLength minimum="4" maximum="25"/-->
                 </h:inputText>
-                <h:message for="idNombre" /><br/>
-           DNI: <h:inputText label="DNI" id="idDNI" value="#{clienteCtrl.cliente.dni}" required="true">
-                    <!--f:validateRegex pattern="\d{7,8}-?[a-zA-Z]" /-->
-                </h:inputText>
-                <h:message for="idDNI"/><br/>
-           Socio: <h:selectBooleanCheckbox label="Socio" value="#{clienteCtrl.cliente.socio}" >
-               <f:ajax render="idTipoSocio" execute="@this"/>
-           </h:selectBooleanCheckbox> (marcar para acceder a tipo de socio)<br/>
-           <h:panelGroup id="idTipoSocio" >
-               <h:panelGrid columns="2" rendered="#{clienteCtrl.cliente.socio}">    
-                   Tipo Socio:
-                   <h:selectOneListbox required="true">
-                       <f:selectItem itemValue="1" itemLabel="Gold" />
-                       <f:selectItem itemValue="2" itemLabel="Premium" />
-                       <f:selectItem itemValue="3" itemLabel="Standard" />
-                   </h:selectOneListbox>
-               </h:panelGrid>
-           </h:panelGroup>
-           <h:commandButton value="Guardar" action="#{clienteCtrl.crea}"/>
-           <h:button value="Cancelar" outcome="index" />
+            <p><h:message styleClass="form-text text-danger" for="idNombre"  /></p>
+            <label>DNI:</label> <h:inputText styleClass="form-control" label="DNI" id="idDNI" 
+                              value="#{clienteCtrl.cliente.dni}" required="true">
+                <!--f:validateRegex pattern="\d{7,8}-?[a-zA-Z]" /-->
+            </h:inputText>
+            <p><h:message styleClass="form-text text-danger" for="idDNI" /></p>
+            <label>Socio:</label> <h:selectBooleanCheckbox styleClass="form-control" label="Socio" value="#{clienteCtrl.cliente.socio}"><br/>
+            <f:ajax render="idTipoSocio" execute="@this"/>
+            </h:selectBooleanCheckbox> <p style="form-text">(marcar para acceder a tipo de socio y actualizar vista con AJAX)</p>
+            <h:panelGroup id="idTipoSocio" >
+                <ui:fragment  rendered="#{clienteCtrl.cliente.socio}">    
+                    <label>Tipo Socio:</label>
+                    <h:selectOneListbox styleClass="form-control" required="true">
+                        <f:selectItem itemValue="1" itemLabel="Gold" />
+                        <f:selectItem itemValue="2" itemLabel="Premium" />
+                        <f:selectItem itemValue="3" itemLabel="Standard" />
+                    </h:selectOneListbox>
+                </ui:fragment>
+            </h:panelGroup>
+            <h:commandButton styleClass="btn btn-primary" value="Guardar" action="#{clienteCtrl.crea}"/>
+            <h:button styleClass="btn btn-default" value="Cancelar" outcome="listado" />
         </h:form>
-        </ui:define>
-    </ui:composition>
+
+    </ui:define>
+</ui:composition>

@@ -14,17 +14,17 @@
         <ui:define name="content">
 
             <h1>Edita Cliente</h1>
-        <h:form id="formCliente">
-            ID: <h:outputText value="#{clienteCtrl.cliente.id}" /><br/><h:inputHidden value="#{clienteCtrl.cliente.id}"/>
-           Nombre: <h:inputText label="Nombre" id="idNombre" value="#{clienteCtrl.cliente.nombre}"
+        <h:form styleClass="well" id="formCliente">
+            <h3>ID: <h:outputText value="#{clienteCtrl.cliente.id}" /></h3><h:inputHidden value="#{clienteCtrl.cliente.id}"/>
+            <label>Nombre:</label> <h:inputText styleClass="form-control" label="Nombre" id="idNombre" value="#{clienteCtrl.cliente.nombre}"
                                 required="true" />
-                <h:message for="idNombre" class="warn"/><br/>
-           DNI: <h:inputText label="DNI" id="idDNI" value="#{clienteCtrl.cliente.dni}"
+           <p><h:message styleClass="form-text text-danger" for="idNombre" class="warn"/></p>
+           <label>DNI:</label> <h:inputText styleClass="form-control" label="DNI" id="idDNI" value="#{clienteCtrl.cliente.dni}"
                              required="true" />
-                <h:message for="idDNI" class="warn"/><br/>
-            Socio: <h:selectBooleanCheckbox value="#{clienteCtrl.cliente.socio}" /><br/>
-            <h:commandButton value="Guardar" action="#{clienteCtrl.guarda}"/>
-            <h:button value="Cancelar" outcome="listado" />
+           <p><h:message styleClass="form-text text-danger" for="idDNI" class="warn"/></p>
+           <label>Socio:</label> <h:selectBooleanCheckbox styleClass="form-control" value="#{clienteCtrl.cliente.socio}" />
+            <h:commandButton styleClass="btn btn-primary" value="Guardar" action="#{clienteCtrl.guarda}"/>
+            <h:button styleClass="btn btn-cancel" value="Cancelar" outcome="listado" />
         </h:form>
         </ui:define>
     </ui:composition>

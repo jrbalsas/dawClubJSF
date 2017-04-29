@@ -9,13 +9,18 @@
             url="jdbc:derby://localhost:1527/club" 
             username="dawuser1"
             password="dawuser1" />
-  <!-- Tomcat JDBC Authentication Realm  -->
-  <Realm className="org.apache.catalina.realm.DataSourceRealm" 
+    <!-- Tomcat File Authentication Realm  -->
+
+ <Realm className="org.apache.catalina.realm.UserDatabaseRealm" resourceName="UserDatabase"/>
+
+    <!-- Tomcat JDBC Authentication Realm  -->
+<!--
+    <Realm className="org.apache.catalina.realm.DataSourceRealm" 
          dataSourceName="jdbc/gestClub" localDataSource="true" 
          roleNameCol="rol" 
          userCredCol="clave" 
          userNameCol="usuario" 
          userRoleTable="roles" 
          userTable="usuarios"/>
-
+-->
 </Context>

@@ -7,7 +7,7 @@
     <ui:define name="content">
         <h1>Listado de Clientes </h1>
         <h:form>
-            <h:dataTable var="cliente" value="#{clienteCtrl.clientes}">
+            <h:dataTable styleClass="table table-striped" var="cliente" value="#{clienteCtrl.clientes}">
                 <h:column>
                     <f:facet name="header">ID</f:facet>
                 #{cliente.id}
@@ -26,18 +26,20 @@
                 </h:column>
                 <h:column>
                     <f:facet name="header">Opciones</f:facet>
-                    <h:button value="Visualiza" outcome="visualiza">
+                    <h:button styleClass="btn btn-primary" value="Visualiza" outcome="visualiza">
                         <f:param name="id" value="#{cliente.id}" /></h:button>&#160;
-                    <h:button value="Edita" outcome="edita" >
+                    <h:button styleClass="btn btn-primary" value="Edita" outcome="edita" >
                         <f:param name="id" value="#{cliente.id}" /></h:button>&#160;
-                    <h:commandButton value="Borra" action="#{clienteCtrl.borra(cliente)}" />
+                    <h:commandButton styleClass="btn btn-danger" value="Borra" action="#{clienteCtrl.borra(cliente)}" />
                 </h:column> 
             </h:dataTable>
         </h:form>
     </ui:define>
     <ui:define name="left">
-        <h:link value="Clientes" outcome="index"/><br/>
-        <h:link value='Nuevo Cliente' outcome="alta"/><br/>
+        <ul class="nav nav-pills nav-stacked">
+            <li><h:link value="Clientes" outcome="index"/></li>
+            <li><h:link value='Nuevo Cliente' outcome="alta"/></li>
+        </ul>
     </ui:define>
 
     </ui:composition>

@@ -14,8 +14,9 @@
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>/faces/*</url-pattern>
-        <url-pattern>*.jsf</url-pattern>       
-        <url-pattern>*.faces</url-pattern>       
+        <url-pattern>*.jsf</url-pattern>
+        <url-pattern>*.xhtml</url-pattern>
+        <url-pattern>*.faces</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
@@ -25,5 +26,35 @@
     <welcome-file-list>
         <welcome-file>index.jsf</welcome-file>
     </welcome-file-list>
-	
+<!-- Realm Access Rules -->
+    <security-constraint>
+        <display-name>CLIENTE</display-name>
+        <web-resource-collection>
+            <web-resource-name>cliente</web-resource-name>
+            <url-pattern>/cliente/*</url-pattern>
+        </web-resource-collection>
+<!--  Remove comments for enable authentication&authorization
+
+        <auth-constraint>
+            <role-name>USUARIOS</role-name>
+            <role-name>ADMINISTRADORES</role-name>
+        </auth-constraint>
+ -->
+  </security-constraint>
+    <login-config>
+        <auth-method>FORM</auth-method>
+        <realm-name>file</realm-name>
+        <form-login-config>
+            <form-login-page>/login.jsf</form-login-page>
+            <form-error-page>/login.jsf</form-error-page>
+        </form-login-config>
+    </login-config>
+    <security-role>
+        <description/>
+        <role-name>USUARIOS</role-name>
+    </security-role>
+    <security-role>
+        <description/>
+        <role-name>ADMINISTRADORES</role-name>
+    </security-role>
 </web-app>

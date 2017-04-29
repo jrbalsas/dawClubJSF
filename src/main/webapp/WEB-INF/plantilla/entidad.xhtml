@@ -6,28 +6,43 @@
     
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-        <h:outputStylesheet library="css" name="default.css"  />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"  />
+<!--        <h:outputStylesheet library="css" name="default.css"  />
         <h:outputStylesheet library="css" name="cssLayout.css"  />
+    -->    
         <title>Gestión Club</title>
     </h:head>
 
-    <h:body lang="es">
+    <h:body lang="es" class="container">
+        <!--Space for metadata tags on views with query strings parameters/actions (see visualiza.xhtml) -->
         <ui:insert name="metadata"/>
 
-        <header id="top">
+        <header id="jumbotron">
             <ui:insert name="top"><h1>Gestión Club</h1></ui:insert>
         </header>
-        <main>
-            <nav id="left">
-                <strong>Menú</strong><br/>
-                <h:link outcome="/index" value="Inicio"/><br/>
-                <ui:insert name="left">Opciones</ui:insert>
+        <main class="row">
+            <nav id="left" class="col-md-2">
+                <h2>Menú</h2>
+
+                <ul class="nav nav-pills nav-stacked">                                    
+                    <li>  <h:link outcome="/index" value="Inicio"/></li>
+                
+                <ui:insert name="left"><!--left content--></ui:insert>
+                
+                <!--Sample Personalized Logout button-->
+                <!--Enable Realm authentication and authorization to show it after login-->
+                <ui:fragment rendered="#{not empty request.remoteUser}">
+                    <li><h:link styleClass="btn btn-warning" outcome="/logout">Logout #{request.remoteUser}</h:link>
+                    </li>
+                </ui:fragment>
+                </ul>
+                
             </nav>
-            <section id="content" class="left_content">
+            <section id="content" class="col-md-10">
                 <ui:insert name="content"> <h1>Bienvenidos</h1> <br/><br/></ui:insert>
             </section>
         </main>
-        <footer id="bottom">
+        <footer id="bottom" class="panel panel-default well">
             <ui:insert name="bottom">Condiciones de Uso</ui:insert>
         </footer>
     </h:body>

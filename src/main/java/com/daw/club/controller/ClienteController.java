@@ -7,9 +7,11 @@ import com.daw.club.qualifiers.DAOList;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.servlet.http.HttpSession;
 
 @Named(value="clienteCtrl")
 @ViewScoped
@@ -120,6 +122,15 @@ public class ClienteController implements Serializable {
         //force get data from DAO (see getClientes() )
         lc=null;
     }        
+    
+    //Sample logout action
+    public String logout() {
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        facesContext.getExternalContext().invalidateSession();
+        return "/index?faces-redirect=true";
+        
+        
+    }
     
     //VALIDADORES Faces. Using Bean Validation instead
     

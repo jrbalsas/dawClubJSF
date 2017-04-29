@@ -8,9 +8,11 @@
             <br/><br/><br/><br/>
         </ui:define>
         <ui:define name="left">
-            <h:link value="Listado" outcome="listado"/><br/>
-            <h:link value="Listado Editable" outcome="listado_din"/><br/>
-            <h:link value="Alta" outcome="alta"/><br/>
-            <h:link value="Alta Ajax" outcome="alta_ajax"/><br/>
+            <ul class="nav nav-pills nav-stacked">
+                <li><h:link  value="Listado" outcome="listado" /></li>
+                <li><h:link  value="Listado Editable" outcome="listado_din"/></li>
+                <li><h:link  value="Alta" outcome="alta"/></li>
+                <li><h:link  value="Alta Ajax" outcome="alta_ajax" /></li>
+            </ul>
         </ui:define>
     </ui:composition>

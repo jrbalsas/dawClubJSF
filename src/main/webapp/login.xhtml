@@ -1,0 +1,14 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                template="./WEB-INF/plantilla/entidad.xhtml">
+    <ui:define name="content">
+        <h2>Identificación de usuario</h2>
+        <form action="j_security_check" method="POST">
+            <label>Usuario</label><input class="form-control" type="text" name="j_username"/>
+            <label>Clave</label><input class="form-control" type="password" name="j_password"/>
+            <input class="btn btn-primary" type="submit" name="Indentificarse"/>
+        </form>
+    </ui:define>
+
+</ui:composition>

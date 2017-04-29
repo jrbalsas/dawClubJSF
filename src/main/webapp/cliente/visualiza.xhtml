@@ -1,28 +1,36 @@
-    <ui:composition xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 template="/WEB-INF/plantilla/entidad.xhtml"           
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:h="http://xmlns.jcp.org/jsf/html">
 
-        <ui:define name="metadata">
-              <f:metadata>
-                <f:viewParam name="id" value="#{clienteCtrl.cliente.id}"/>
-                <f:viewAction action="#{clienteCtrl.recupera()}" />
-            </f:metadata>               
-        </ui:define>
-        
-        <ui:define name="content">
+    <ui:define name="metadata">
+        <f:metadata>
+            <f:viewParam name="id" value="#{clienteCtrl.cliente.id}"/>
+            <f:viewAction action="#{clienteCtrl.recupera()}" />
+        </f:metadata>               
+    </ui:define>
+
+    <ui:define name="content">
+        <div class="panel panel-default">
+
+            <h1 class="panel-heading">Visualiza Cliente</h1>
+
+            <ul class="panel-body list-group">
+
+                <li class="list-group-item"><strong>ID:</strong> #{clienteCtrl.cliente.id}</li>
+                <li class="list-group-item"><strong>Nombre:</strong> #{clienteCtrl.cliente.nombre}</li>
+                <li class="list-group-item"><strong>DNI:</strong> #{clienteCtrl.cliente.dni}</li>
+                <li class="list-group-item"><strong>Socio:</strong> #{clienteCtrl.cliente.socio?"Sí":"No"}</li>
+            </ul>
             <h:form>
-            <h1>Visualiza Cliente</h1>
-            ID: #{clienteCtrl.cliente.id}<br/>
-            Nombre: #{clienteCtrl.cliente.nombre}<br/>
-            DNI: #{clienteCtrl.cliente.dni}<br/>
-            Socio: #{clienteCtrl.cliente.socio?"Sí":"No"}<br/>
-            <h:button value="Editar" outcome="edita">
-                <f:param name="id" value="#{clienteCtrl.cliente.id}"/>
-            </h:button>
-            <h:commandButton value="Borrar" action="#{clienteCtrl.borra}"/>
-            <h:link value="Volver" outcome="listado" />
+
+                <h:button styleClass="btn btn-primary" value="Editar" outcome="edita">
+                    <f:param name="id" value="#{clienteCtrl.cliente.id}"/>
+                </h:button>
+                <h:commandButton styleClass="btn btn-danger" value="Borrar" action="#{clienteCtrl.borra}"/>
+                <h:link styleClass="btn btn-default" value="Volver" outcome="listado" />
             </h:form>
-        </ui:define>
-    </ui:composition>
+        </div>
+    </ui:define>
+</ui:composition>
