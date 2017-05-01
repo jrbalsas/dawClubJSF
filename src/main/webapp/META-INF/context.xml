@@ -1,20 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Context antiJARLocking="true" path="/dawClubJSF">
-
-    <!--Apache Tomcat Derby Connection Pool-->
-  <Resource auth="Container" driverClassName="org.apache.derby.jdbc.ClientDriver" 
-            maxActive="8" 
-            name="jdbc/gestClub" 
-            type="javax.sql.DataSource" 
-            url="jdbc:derby://localhost:1527/club" 
-            username="dawuser1"
-            password="dawuser1" />
-    <!-- Tomcat File Authentication Realm  -->
-
- <Realm className="org.apache.catalina.realm.UserDatabaseRealm" resourceName="UserDatabase"/>
-
-    <!-- Tomcat JDBC Authentication Realm  -->
-<!--
+  <!--Apache Tomcat Derby Connection Pool-->
+  <Resource auth="Container" driverClassName="org.apache.derby.jdbc.ClientDriver" maxActive="8" name="jdbc/gestClub" password="dawuser1" type="javax.sql.DataSource" url="jdbc:derby://localhost:1527/club" username="dawuser1"/>
+  <!-- Tomcat File Authentication Realm  -->
+  <Realm className="org.apache.catalina.realm.UserDatabaseRealm" resourceName="UserDatabase"/>
+  <!-- Tomcat JDBC Authentication Realm  -->
+  <!--
     <Realm className="org.apache.catalina.realm.DataSourceRealm" 
          dataSourceName="jdbc/gestClub" localDataSource="true" 
          roleNameCol="rol" 

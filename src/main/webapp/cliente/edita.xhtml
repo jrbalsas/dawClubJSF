@@ -18,10 +18,10 @@
             <h3>ID: <h:outputText value="#{clienteCtrl.cliente.id}" /></h3><h:inputHidden value="#{clienteCtrl.cliente.id}"/>
             <label>Nombre:</label> <h:inputText styleClass="form-control" label="Nombre" id="idNombre" value="#{clienteCtrl.cliente.nombre}"
                                 required="true" />
-           <p><h:message styleClass="form-text text-danger" for="idNombre" class="warn"/></p>
+           <p><h:message styleClass="form-text text-danger" for="idNombre" /></p>
            <label>DNI:</label> <h:inputText styleClass="form-control" label="DNI" id="idDNI" value="#{clienteCtrl.cliente.dni}"
                              required="true" />
-           <p><h:message styleClass="form-text text-danger" for="idDNI" class="warn"/></p>
+           <p><h:message styleClass="form-text text-danger" for="idDNI" /></p>
            <label>Socio:</label> <h:selectBooleanCheckbox styleClass="form-control" value="#{clienteCtrl.cliente.socio}" />
             <h:commandButton styleClass="btn btn-primary" value="Guardar" action="#{clienteCtrl.guarda}"/>
             <h:button styleClass="btn btn-cancel" value="Cancelar" outcome="listado" />
