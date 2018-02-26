@@ -28,7 +28,7 @@ public class ClienteDAOList implements ClienteDAO, Serializable{
     public Cliente buscaId(Integer id) {
         Cliente encontrado=null;
         for (Cliente c: clientes) {
-               if (c.getId()==id) encontrado=c;
+               if (c.getId()==id) encontrado=new Cliente(c);
         }
         return encontrado;
     }
