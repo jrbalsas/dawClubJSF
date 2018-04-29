@@ -25,7 +25,7 @@ public class ClienteDAOJDBC implements ClienteDAO, Serializable {
     //private static String connPoolName="jdbc/gestClub";               //Glassfish
     private static final String SQL_BUSCAID="SELECT * FROM Clientes where id=?";
     private static final String SQL_BUSCATODOS="SELECT * FROM Clientes";
-    private static final String SQL_CREA="INSERT INTO Clientes (nombre,dni,socio) VALUES (?,?,?)";
+    private static final String SQL_CREA="INSERT INTO Clientes (nombre,dni,socio,id) VALUES (?,?,?,0)";
     private static final String SQL_ACTUALIZA="UPDATE Clientes set NOMBRE=?, DNI=?, SOCIO=? WHERE id=?";
     private static final String SQL_BORRA="DELETE FROM Clientes WHERE id=?";
 

@@ -3,6 +3,7 @@ package com.daw.club.controller;
 import com.daw.club.model.Cliente;
 import com.daw.club.model.dao.ClienteDAO;
 import com.daw.club.qualifiers.DAOJdbc;
+import com.daw.club.qualifiers.DAOJpa;
 import com.daw.club.qualifiers.DAOList;
 import java.io.Serializable;
 import java.util.List;
@@ -18,9 +19,10 @@ public class ClienteController implements Serializable {
      private static final long serialVersionUID = 1L;
 
     //Business logic
-    //@Inject @DAOJdbc    //Inject DAO JDBC Implementation version
-    @Inject @DAOList  //Inject DAO ArrayList testing implementation version
-    private ClienteDAO clienteDAO;
+    //@Inject @DAOJdbc    //Inject DAO JDBC Implementation
+    //@Inject @DAOJpa       //JPA DAO implementation
+    @Inject @DAOList  //Inject DAO ArrayList testing implementation         
+     private ClienteDAO clienteDAO;
    
     //Model
     private Cliente c;
