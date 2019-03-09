@@ -8,18 +8,18 @@
         <h1>Alta Cliente</h1>
         <h:form styleClass="well" >
             <label>Nombre:</label> <h:inputText styleClass="form-control" label="Nombre" id="idNombre"
-                            value="#{clienteCtrl.cliente.nombre}" required="true">
+                                                value="#{clienteCtrl.cliente.nombre}" required="true">
                 <!--f:validateLength minimum="4" maximum="25"/-->
             </h:inputText>
             <p><h:message styleClass="form-text text-danger" for="idNombre"  /></p>
             <label>DNI:</label> <h:inputText styleClass="form-control" label="DNI" id="idDNI" 
-                         value="#{clienteCtrl.cliente.dni}" required="true">
+                                             value="#{clienteCtrl.cliente.dni}" required="true">
                 <!--f:validateRegex pattern="\d{7,8}-?[a-zA-Z]" /-->
             </h:inputText>
             <p><h:message styleClass="form-text text-danger" for="idDNI" /></p>
             <label>Socio:</label> <h:selectBooleanCheckbox styleClass="form-control" label="Socio" value="#{clienteCtrl.cliente.socio}" />
-       <h:commandButton styleClass="btn btn-primary" value="Guardar" action="#{clienteCtrl.crea}"/>
-       <h:button styleClass="btn btn-default" value="Cancelar" outcome="listado" />
-    </h:form>
+            <h:commandButton styleClass="btn btn-primary" value="Guardar" action="#{clienteCtrl.crea}"/>
+            <h:button styleClass="btn btn-default" value="Cancelar" outcome="listado" />
+        </h:form>
     </ui:define>
 </ui:composition>

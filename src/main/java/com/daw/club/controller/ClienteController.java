@@ -9,78 +9,83 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-@Named(value="clienteCtrl")
+@Named(value = "clienteCtrl")
 @ViewScoped
 public class ClienteController implements Serializable {
-     private static final long serialVersionUID = 1L;
+
+    private static final long serialVersionUID = 1L;
 
     private final Logger logger = Logger.getLogger(ClienteController.class.getName());
-     
+
     //Business logic
     //@Inject @DAOJdbc    //Inject DAO JDBC Implementation
     //@Inject @DAOJpa       //JPA DAO implementation
-    @Inject @DAOList  //Inject DAO ArrayList testing implementation         
-     private ClienteDAO clienteDAO;
-   
+    @Inject
+    @DAOList  //Inject DAO ArrayList testing implementation         
+    private ClienteDAO clienteDAO;
+
     //View-Model
-    private Cliente c;
-    private List<Cliente> lc;
-    private int editRow=0;      //current client editable
-    
+    private Cliente cliente;
+    private int editRow = 0;      //current client editable
+
     public ClienteController() {
     }
-    
+
     @PostConstruct
     public void init() {
-        c=new Cliente();
-        lc=null;
+        //init  model-view
+        cliente = new Cliente();
     }
+
+    //MODEL-VIEW access methods (controller bean properties)
     
-    //Model access
     public List<Cliente> getClientes() {
-        //Get clientes from DAO only when creating Controller
-        //on entering ViewScope. Next calls reuse data if continue
-        //in ViewScope p.e. generating list view
-        if (lc==null)
-                lc=clienteDAO.buscaTodos();
-        return lc;
+        return clienteDAO.buscaTodos();
     }
+//Modificacion of property from view not needed
 //    public void setClientes (List<Cliente> lc) {
 //        this.lc=lc;
 //    }
 
-    public Cliente getCliente () {
-        return c;
+    public Cliente getCliente() {
+        return cliente;
     }
-    public void setCliente (Cliente c) {
-        this.c=c;
+
+    public void setCliente(Cliente c) {
+        this.cliente = c;
     }
-    
+
     //ACTIONS for visualiza, crea, edit and borra views
-    
-    /** Get client from id param*/
+    /**
+     * Get client from id param
+     */
     public void recupera() {
-        Cliente clienteActual;
-        clienteActual=clienteDAO.buscaId(c.getId());
-        if (clienteActual!=null) {
-             c=clienteActual;
-        } else {
-            c=new Cliente();
+        cliente = clienteDAO.buscaId(cliente.getId());
+        if (cliente == null) {
+            FacesContext facesContext = FacesContext.getCurrentInstance();
+            facesContext.addMessage(null, new FacesMessage("El cliente indicado no existe"));
         }
     }
-    /** Create a new Client from model data*/
+
+    /**
+     * Create a new Client from model data
+     */
     public String crea() {
-        c.setId(0);
-        clienteDAO.crea(c); 
+        cliente.setId(0);
+        clienteDAO.crea(cliente);
         //Post-Redirect-Get
-        return "visualiza?faces-redirect=true&id="+c.getId();
+        return "visualiza?faces-redirect=true&id=" + cliente.getId();
     }
-    /** Update current model client to DAO*/    
+
+    /**
+     * Update current model client to DAO
+     */
     public String guarda() {
 //      Programatic validation
 //        if (valida(c.getDni())==false) {
@@ -88,54 +93,57 @@ public class ClienteController implements Serializable {
 //            fc.addMessage("formCliente:idDNI", new FacesMessage("La letra no coincide con el DNI"));
 //            return ""; //Stay on view to correct error
 //        } 
-        clienteDAO.guarda(c);
-        return "visualiza?faces-redirect=true&id="+c.getId();
-    }        
-    /** Delete current model data client*/
-    public String borra() {        
-        clienteDAO.borra(c.getId());
+        clienteDAO.guarda(cliente);
+        return "visualiza?faces-redirect=true&id=" + cliente.getId();
+    }
+
+    /**
+     * Delete current model data client
+     */
+    public String borra() {
+        clienteDAO.borra(cliente.getId());
         return "listado";
     }
 
     //ACTIONS for listado.xhtml view
-    
     public String borra(Cliente cliente) {
         clienteDAO.borra(cliente.getId());
         return "listado";
     }
-    
-    //ACTIONS for listado_din.xhtml view
 
-    /**Check if current row has edit mode enabled */
+    //ACTIONS for listado_din.xhtml view
+    /**
+     * Check if current row has edit mode enabled
+     */
     public boolean isEditable(int row) {
-        return editRow==row;
+        return editRow == row;
     }
 
-    /**Enable row edit model*/
+    /**
+     * Enable row edit model
+     */
     public void setEditRow(int row) {
         this.editRow = row;
     }
 
-    /** Update current row from table to DAO*/    
+    /**
+     * Update current row from table to DAO
+     */
     public void guarda(Cliente cliente) {
 
         clienteDAO.guarda(cliente);
-        editRow=0;
-        //force get data from DAO (see getClientes() )
-        lc=null;
-    }        
-    
+        editRow = 0;
+    }
+
     //Sample logout action
     public String logout() {
         FacesContext facesContext = FacesContext.getCurrentInstance();
         facesContext.getExternalContext().invalidateSession();
         return "/index?faces-redirect=true";
-        
-        
+
     }
-    
+
     //VALIDADORES Faces. Using Bean Validation instead
-    
 //    public void validaNombre(FacesContext context, UIComponent inputNombre,
 //                                Object value) {
 //        String nombre=(String)value;
@@ -155,7 +163,4 @@ public class ClienteController implements Serializable {
 //        
 //        }        
 //    }
-
-    
-    
 }

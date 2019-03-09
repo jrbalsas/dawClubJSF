@@ -16,21 +16,32 @@
 
             <h1 class="panel-heading">Visualiza Cliente</h1>
 
-            <ul class="panel-body list-group">
+            <h:messages class="text-danger"/>
+            <ui:fragment  rendered="#{clienteCtrl.cliente != null}">    
 
-                <li class="list-group-item"><strong>ID:</strong> #{clienteCtrl.cliente.id}</li>
-                <li class="list-group-item"><strong>Nombre:</strong> #{clienteCtrl.cliente.nombre}</li>
-                <li class="list-group-item"><strong>DNI:</strong> #{clienteCtrl.cliente.dni}</li>
-                <li class="list-group-item"><strong>Socio:</strong> #{clienteCtrl.cliente.socio?"Sí":"No"}</li>
-            </ul>
-            <h:form>
+                <ul class="panel-body list-group">
 
-                <h:button styleClass="btn btn-primary" value="Editar" outcome="edita">
-                    <f:param name="id" value="#{clienteCtrl.cliente.id}"/>
-                </h:button>
-                <h:commandButton styleClass="btn btn-danger" value="Borrar" action="#{clienteCtrl.borra}"/>
-                <h:link styleClass="btn btn-default" value="Volver" outcome="listado" />
-            </h:form>
+                    <li class="list-group-item"><strong>ID:</strong> #{clienteCtrl.cliente.id}</li>
+                    <li class="list-group-item"><strong>Nombre:</strong> #{clienteCtrl.cliente.nombre}</li>
+                    <li class="list-group-item"><strong>DNI:</strong> #{clienteCtrl.cliente.dni}</li>
+                    <li class="list-group-item"><strong>Socio:</strong> #{clienteCtrl.cliente.socio?"Sí":"No"}</li>
+                </ul>
+                <h:form>
+
+                    <h:button styleClass="btn btn-primary" value="Editar" outcome="edita">
+                        <f:param name="id" value="#{clienteCtrl.cliente.id}"/>
+                    </h:button>
+                    <h:commandButton styleClass="btn btn-danger" value="Borrar" action="#{clienteCtrl.borra}"/>
+                    <h:link styleClass="btn btn-default" value="Volver" outcome="listado" />
+                </h:form>
+            </ui:fragment>
+
         </div>
     </ui:define>
+        <ui:define name="left">
+        <ul class="nav nav-pills nav-stacked">
+            <li class="nav-item"><h:link value="Volver" outcome="index" class="nav-link "/></li>
+        </ul>
+    </ui:define>
+
 </ui:composition>
