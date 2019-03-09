@@ -15,14 +15,23 @@ Features:
 - Simple Entity CRUD views
 - DataTable row editing view
 - Sample view modification using AJAX
-- Maven runtime dependencies for using JSF, Bean validation (hibernate) and CDI (weld) for Tomcat deployment
 - Optional Authentication/Authorization rules and Logout button
 - Persistence.xml configuration with JNDI datasource
 
-Requeriments:
---------------
-- Tomcat or JEE compliance server >=7 (p.e. Glassfish +4)
-- For DAOJdbc testing a JDBC database connection required, i.e. DerbyDB (edit context.xml to adapt connection pool for your database)
-- WEB-INF/DBInitScript.sql can be used to create required table and insert sample data into database
-- In Tomcat, for enabling Authentication form, uncomment <Auth-constraint> section in web.xml and add users on tomcat-users.xml
+## Requeriments
 
+- JEE Application Server, i.e. Payara, Glassfish
+
+## Usage
+- Compile and deploy in a JEE Application Server
+
+### DB Access:
+1. Configure JEE Datasource in web.xml
+2. WEB-INF/DBInitScript.sql can be used to create required table and insert sample data into database
+3. Select JDBC or JPA DAOs implementation in controller
+4. JPA DAO requires enable JNDI datasource in persistence.xml
+
+### Realm Authentication/Authorization:
+1. Create Realm in JEE Application Server, e.g. using AS GUI/asadmin tool
+2. Uncomment/Create Security-constraints in web.xml
+3. Select valid realm in web.xml
