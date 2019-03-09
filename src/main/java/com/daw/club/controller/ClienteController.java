@@ -7,6 +7,7 @@ import com.daw.club.qualifiers.DAOJpa;
 import com.daw.club.qualifiers.DAOList;
 import java.io.Serializable;
 import java.util.List;
+import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
@@ -18,24 +19,24 @@ import javax.inject.Named;
 public class ClienteController implements Serializable {
      private static final long serialVersionUID = 1L;
 
+    private final Logger logger = Logger.getLogger(ClienteController.class.getName());
+     
     //Business logic
     //@Inject @DAOJdbc    //Inject DAO JDBC Implementation
     //@Inject @DAOJpa       //JPA DAO implementation
     @Inject @DAOList  //Inject DAO ArrayList testing implementation         
      private ClienteDAO clienteDAO;
    
-    //Model
+    //View-Model
     private Cliente c;
     private List<Cliente> lc;
     private int editRow=0;      //current client editable
     
     public ClienteController() {
-        //DAO not injected yet
     }
     
     @PostConstruct
     public void init() {
-        //Usefull if DAO injection needed
         c=new Cliente();
         lc=null;
     }

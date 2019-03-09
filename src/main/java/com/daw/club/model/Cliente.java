@@ -17,7 +17,7 @@ public class Cliente implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    @Size(min = 4, max = 25)
+    @Size(min = 4, max = 25, message = "La longitud ${validatedValue} debe estar entre {min} y {max} caracteres")
     private String nombre;
     @Pattern(regexp = "\\d{7,8}(-?[a-zA-Z])?", message = "{cliente.dni.formato}")
     private String dni;

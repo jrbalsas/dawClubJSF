@@ -7,27 +7,27 @@
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <!--
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"  />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"  />
 -->
-        <h:outputStylesheet library="webjars" name="bootstrap/3.3.6/css/bootstrap.min-jsf.css"  />
-        <h:outputScript library="webjars" name="jquery/1.11.1/jquery.js" /> 
+        <h:outputStylesheet library="webjars" name="bootstrap/4.3.1/css/bootstrap.min-jsf.css"  />
+        <h:outputScript library="webjars" name="jquery/3.0.0/jquery.js" /> 
         
-        <title>Gestión Club</title>
+        <title>Club de Tenis</title>
     </h:head>
 
     <h:body lang="es" class="container">
         <!--Space for metadata tags on views with query strings parameters/actions (see visualiza.xhtml) -->
         <ui:insert name="metadata"/>
 
-        <header id="jumbotron">
-            <ui:insert name="top"><h1>Gestión Club</h1></ui:insert>
+        <header class="jumbotron">
+            <ui:insert name="top"><h1><h:link outcome="/index"><h:graphicImage name="logo.png" library="images"/></h:link> Club de Tenis</h1></ui:insert>
         </header>
         <main class="row">
             <nav id="left" class="col-md-2">
                 <h2>Menú</h2>
 
                 <ul class="nav nav-pills nav-stacked">                                    
-                    <li>  <h:link outcome="/index" value="Inicio"/></li>
+                    <li class="nav-item">  <h:link outcome="/index" value="Inicio" class="nav-link"/></li>
                 
                 <ui:insert name="left"><!--left content--></ui:insert>
                 
@@ -44,7 +44,7 @@
                 <ui:insert name="content"> <h1>Bienvenidos</h1> <br/><br/></ui:insert>
             </section>
         </main>
-        <footer id="bottom" class="panel panel-default well">
+        <footer id="bottom" class="panel panel-default well bg-light">
             <ui:insert name="bottom">Condiciones de Uso</ui:insert>
         </footer>
     </h:body>

@@ -7,7 +7,20 @@
         <param-value>Development</param-value>
         <!-- Other values: Production, SystemTest, UnitTest -->
     </context-param>
-<!-- Not needed with Servlet 3.0+
+
+    <!-- Session configuration -->
+    <session-config>
+        <session-timeout>
+            30 <!-- Time in minutes to expire after the last request -->
+        </session-timeout>        
+        <cookie-config>
+                <http-only>true</http-only> <!-- Prevent client side scripting from accessing/manipulating session cookie. -->
+                <secure>false</secure> <!-- true to force send over TLS connection -->
+        </cookie-config>
+        <tracking-mode>COOKIE</tracking-mode> <!-- This disables URL rewriting. -->
+    </session-config>
+
+    <!-- Not needed with Servlet 3.0+
     <servlet>
         <servlet-name>Faces Servlet</servlet-name>
         <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
@@ -21,35 +34,47 @@
         <url-pattern>*.faces</url-pattern>
     </servlet-mapping>
 -->
-        <session-config>
-        <session-timeout>
-            30
-        </session-timeout>
-    </session-config>
     <welcome-file-list>
         <welcome-file>index.jsf</welcome-file>
     </welcome-file-list>
-<!-- Realm Access Rules -->
+
+    <!-- Creation of Datasource in Application Server -->
+    <data-source>
+        <name>java:global/jdbc/gestClub</name>
+        <class-name>org.apache.derby.jdbc.ClientConnectionPoolDataSource</class-name>        
+        <server-name>localhost</server-name>
+        <port-number>1527</port-number>
+        <database-name>club</database-name>
+        <user>dawuser1</user>
+        <password>dawuser1</password>                                
+        <initial-pool-size>2</initial-pool-size>
+        <max-pool-size>10</max-pool-size>
+        <min-pool-size>5</min-pool-size>
+    </data-source>
+
+    <!-- Realm Access Rules -->
+<!--  Remove comments for enable authentication&authorization
+
     <security-constraint>
         <display-name>CLIENTE</display-name>
         <web-resource-collection>
             <web-resource-name>cliente</web-resource-name>
             <url-pattern>/cliente/*</url-pattern>
         </web-resource-collection>
-<!--  Remove comments for enable authentication&authorization
 
-        <auth-constraint>
-            <role-name>USUARIOS</role-name>
-            <role-name>ADMINISTRADORES</role-name>
-        </auth-constraint>
- -->
-  </security-constraint>
+           <auth-constraint>
+               <role-name>USUARIOS</role-name>
+               <role-name>ADMINISTRADORES</role-name>
+           </auth-constraint>
+     </security-constraint>
+    -->
+
     <login-config>
         <auth-method>FORM</auth-method>
         <realm-name>file</realm-name>
         <form-login-config>
             <form-login-page>/login.jsf</form-login-page>
-            <form-error-page>/login.jsf</form-error-page>
+            <form-error-page>/login.jsf?error=true</form-error-page>
         </form-login-config>
     </login-config>
     <security-role>

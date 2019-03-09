@@ -4,6 +4,9 @@
                 template="./WEB-INF/plantilla/entidad.xhtml">
     <ui:define name="content">
         <h2>Identificación de usuario</h2>
+         <h:panelGroup rendered="#{param.error}">
+            <p class="alert alert-danger">Ocurrió un error en la identificación</p>
+        </h:panelGroup>
         <form action="j_security_check" method="POST">
             <label>Usuario</label><input class="form-control" type="text" name="j_username"/>
             <label>Clave</label><input class="form-control" type="password" name="j_password"/>

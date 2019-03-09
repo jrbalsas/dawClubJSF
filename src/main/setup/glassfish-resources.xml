@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE resources PUBLIC "-//GlassFish.org//DTD GlassFish Application Server 3.1 Resource Definitions//EN" "http://glassfish.org/dtds/glassfish-resources_1_5.dtd">
 <resources>
+<!--
   <jdbc-resource enabled="true" jndi-name="jdbc/gestClub" object-type="user" pool-name="gestClub">
     <description/>
   </jdbc-resource>
@@ -12,4 +13,5 @@
     <property name="User" value="dawuser1"/>
     <property name="Password" value="dawuser1"/>
   </jdbc-connection-pool>
+  -->
 </resources>

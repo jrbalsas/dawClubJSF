@@ -4,7 +4,7 @@
 
     <groupId>com.daw</groupId>
     <artifactId>club</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
     <packaging>war</packaging>
 
     <name>dawClubJSF</name>
@@ -15,57 +15,19 @@
     </properties>
     
     <dependencies>
-        <dependency>
-            <groupId>jstl</groupId>
-            <artifactId>jstl</artifactId>
-            <version>1.2</version>
-            <scope>runtime</scope>
-        </dependency>
-        <!-- CDI implementation -->
-        <dependency>
-            <groupId>org.jboss.weld.servlet</groupId>
-            <artifactId>weld-servlet</artifactId>
-            <version>2.4.6.Final</version>
-            <scope>runtime</scope>
-        </dependency>
-        <!-- Bean Validation implementation -->
-        <dependency>
-            <groupId>org.hibernate.validator</groupId>
-            <artifactId>hibernate-validator</artifactId>
-            <version>6.0.7.Final</version>
-            <scope>runtime</scope>
-        </dependency>
-        <!-- JSF Framework -->
-        <dependency>
-            <groupId>com.sun.faces</groupId>
-            <artifactId>jsf-api</artifactId>
-            <version>2.2.16</version>
-            <scope>runtime</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.sun.faces</groupId>
-            <artifactId>jsf-impl</artifactId>
-            <version>2.2.16</version>
-            <scope>runtime</scope>
-        </dependency>
+
         <!-- DerbyDB client-driver -->
         <dependency>
             <groupId>org.apache.derby</groupId>
-            <artifactId>derby</artifactId>
-            <version>10.14.1.0</version>
+            <artifactId>derbyclient</artifactId>
+            <version>10.14.2.0</version>
             <scope>runtime</scope>
         </dependency>
         <!-- Bootstrap CSS Framework -->
         <dependency>
             <groupId>org.webjars</groupId>
             <artifactId>bootstrap</artifactId>
-            <version>3.3.6</version>
-        </dependency>
-        <!--JPA Implementation -->
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-core</artifactId>
-            <version>5.2.16.Final</version>
+            <version>4.3.1</version>
         </dependency>
 
         <dependency>
@@ -125,11 +87,4 @@
             </plugin>
         </plugins>
     </build>
-    <repositories>
-        <repository>
-            <id>unknown-jars-temp-repo</id>
-            <name>A temporary repository created by NetBeans for libraries and jars it could not identify. Please replace the dependencies in this repository with correct ones and delete this repository.</name>
-            <url>file:${project.basedir}/lib</url>
-        </repository>
-    </repositories>
 </project>

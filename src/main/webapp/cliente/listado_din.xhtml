@@ -17,29 +17,29 @@
                 <h:column>
                     <f:facet name="header">Nombre</f:facet>
                     <h:outputText value="#{cliente.nombre}" rendered="#{!clienteCtrl.isEditable(cliente.id)}"/>
-                    <h:inputText value="#{cliente.nombre}" rendered="#{clienteCtrl.isEditable(cliente.id)}"/>
+                    <h:inputText value="#{cliente.nombre}" rendered="#{clienteCtrl.isEditable(cliente.id)}" class="form-control"/>
                 </h:column>
                 <h:column>
                     <f:facet name="header">DNI</f:facet>
                     <h:outputText value="#{cliente.dni}" rendered="#{!clienteCtrl.isEditable(cliente.id)}"/>
-                    <h:inputText value="#{cliente.dni}" rendered="#{clienteCtrl.isEditable(cliente.id)}"/>
+                    <h:inputText value="#{cliente.dni}" rendered="#{clienteCtrl.isEditable(cliente.id)}" class="form-control"/>
                 </h:column>
                 <h:column>
                     <f:facet name="header">Socio</f:facet>
                     <h:outputText value="#{cliente.socio?'Sí':'No'}" rendered="#{!clienteCtrl.isEditable(cliente.id)}"/>
-                    <h:selectBooleanCheckbox value="#{cliente.socio}" rendered="#{clienteCtrl.isEditable(cliente.id)}"/>
+                    <h:selectBooleanCheckbox value="#{cliente.socio}" rendered="#{clienteCtrl.isEditable(cliente.id)}" class="form-control"/>
                 </h:column>
                 <h:column>
                     <f:facet name="header">Opciones</f:facet>
                     <h:panelGroup rendered="#{!clienteCtrl.isEditable(cliente.id)}">
-                        <h:button styleClass="btn btn-primary" value="Visualiza" outcome="visualiza">
+                        <h:button styleClass="btn btn-light" value="Visualiza" outcome="visualiza">
                             <f:param name="id" value="#{cliente.id}" /></h:button>&#160;
-                        <h:commandButton styleClass="btn btn-primary" value="Edita" action="#{clienteCtrl.setEditRow(cliente.id)}" />&#160;
-                        <h:commandButton styleClass="btn btn-danger" value="Borra" action="#{clienteCtrl.borra(cliente)}" />
+                        <h:commandButton styleClass="btn btn-light" value="Edita" action="#{clienteCtrl.setEditRow(cliente.id)}" />&#160;
+                        <h:commandButton styleClass="btn btn-light" value="Borra" action="#{clienteCtrl.borra(cliente)}" />
                     </h:panelGroup>
                     <h:panelGroup rendered="#{clienteCtrl.isEditable(cliente.id)}">
-                        <h:commandButton styleClass="btn btn-primary" value="Guarda" action="#{clienteCtrl.guarda(cliente)}"   />&#160;
-                        <h:commandButton styleClass="btn btn-default" value="Cancela" action="#{clienteCtrl.setEditRow(0)}" immediate="true" />&#160;
+                        <h:commandButton styleClass="btn btn-light" value="Guarda" action="#{clienteCtrl.guarda(cliente)}"   />&#160;
+                        <h:commandButton styleClass="btn btn-light" value="Cancela" action="#{clienteCtrl.setEditRow(0)}" immediate="true" />&#160;
                     </h:panelGroup>
                 </h:column> 
             </h:dataTable>
@@ -47,8 +47,7 @@
     </ui:define>
     <ui:define name="left">
         <ul class="nav nav-pills nav-stacked">
-
-            <li><h:link value='Nuevo Cliente' outcome="alta" /></li>
+            <li class="nav-item"><h:link value='Nuevo Cliente' outcome="alta" class="nav-link active" /></li>
         </ul>
     </ui:define>
 
