@@ -18,26 +18,26 @@ import javax.persistence.Persistence;
 @ApplicationScoped
 public class ClubConfiguration {
 
-    private EntityManagerFactory emf;
-
-    public ClubConfiguration() {
-        //Initialice EntityManagerFactory
-        emf = Persistence
-                .createEntityManagerFactory("ClubPU");
-    }
-
-    /**
-     * EntityManager producer
-     *
-     * @return EntityManager for injection in DAOs
-     * @note Needed in Servlet Containers, e.g. Tomcat
-     */
-    @Produces
-    public EntityManager createEntityManager() {
-        return emf.createEntityManager();
-    }
-
-    public void closeEntityManager(@Disposes EntityManager em) {
-        em.close();
-    }
+//    private EntityManagerFactory emf;
+//
+//    public ClubConfiguration() {
+//        //Initialice EntityManagerFactory
+//        emf = Persistence
+//                .createEntityManagerFactory("ClubPU");
+//    }
+//
+//    /**
+//     * EntityManager producer
+//     *
+//     * @return EntityManager for injection in DAOs
+//     * @note Needed in Servlet Containers, e.g. Tomcat
+//     */
+//    @Produces
+//    public EntityManager createEntityManager() {
+//        return emf.createEntityManager();
+//    }
+//
+//    public void closeEntityManager(@Disposes EntityManager em) {
+//        em.close();
+//    }
 }

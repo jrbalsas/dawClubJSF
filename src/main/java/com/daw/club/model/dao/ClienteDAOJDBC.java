@@ -2,7 +2,6 @@ package com.daw.club.model.dao;
 
 import com.daw.club.model.Cliente;
 import com.daw.club.qualifiers.DAOJdbc;
-import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.PreparedStatement;
@@ -16,8 +15,6 @@ import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.context.Dependent;
-import javax.enterprise.context.RequestScoped;
 import javax.sql.DataSource;
 
 @DAOJdbc

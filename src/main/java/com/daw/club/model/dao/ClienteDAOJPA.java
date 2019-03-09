@@ -26,15 +26,12 @@ public class ClienteDAOJPA implements ClienteDAO, Serializable {
 
     private final Logger logger = Logger.getLogger(ClienteDAOJPA.class.getName());
 
-    //@Inject   //For servlet containers, e.g. Tomcat, inject using CDI @Produces methods
+    //@Inject   //For servlet containers, e.g. Tomcat, inject using CDI @Produces methods    
     @PersistenceContext(unitName = "ClubPU") //Only for JEE full application servers
+                                             //Requires to enable Persistence-unit in persistence.xml
     private EntityManager em;
 
     public ClienteDAOJPA() {
-        //EntityManager creation not needed, i.e. injected with CDI
-//                em=Persistence
-//                .createEntityManagerFactory("ClubPU")
-//                .createEntityManager();
     }
 
     @Override
