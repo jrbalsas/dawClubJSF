@@ -26,7 +26,7 @@
             <nav id="left" class="col-md-2">
                 <h2>Menú</h2>
 
-                <ul class="nav nav-pills nav-stacked">                                    
+                <ul class="nav nav-pills flex-column">                                    
                     <li class="nav-item">  <h:link outcome="/index" value="Inicio" class="nav-link"/></li>
                 
                 <ui:insert name="left"><!--left content--></ui:insert>
@@ -34,7 +34,7 @@
                 <!--Sample Personalized Logout button-->
                 <!--Enable Realm authentication and authorization to show it after login-->
                 <ui:fragment rendered="#{not empty request.remoteUser}">
-                    <li><h:link styleClass="btn btn-warning" outcome="/logout">Logout #{request.remoteUser}</h:link>
+                    <li><h:link styleClass="nav-item btn btn-warning" outcome="/logout">Logout #{request.remoteUser}</h:link>
                     </li>
                 </ui:fragment>
                 </ul>
@@ -44,8 +44,12 @@
                 <ui:insert name="content"> <h1>Bienvenidos</h1> <br/><br/></ui:insert>
             </section>
         </main>
-        <footer id="bottom" class="panel panel-default well bg-light">
-            <ui:insert name="bottom">Condiciones de Uso</ui:insert>
+        <footer id="bottom" class="card bg-light">
+            <ui:insert name="bottom">
+                <div class="card-body">
+                    <p class="card-text text-right">Made with <span class="text-danger">❤</span> in DAW</p>
+                </div>
+            </ui:insert>
         </footer>
     </h:body>
 </html>
