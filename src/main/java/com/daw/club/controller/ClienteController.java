@@ -57,10 +57,6 @@ public class ClienteController implements Serializable {
         return cliente;
     }
 
-    public void setCliente(Cliente c) {
-        this.cliente = c;
-    }
-
     //ACTIONS for visualiza, crea, edit and borra views
     /**
      * Get client from id param
