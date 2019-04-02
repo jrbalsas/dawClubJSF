@@ -7,3 +7,4 @@ nbactions.xml
 nb-configuration.xml
 .nb-gradle/
 /target/
+**/faces-config.NavData
