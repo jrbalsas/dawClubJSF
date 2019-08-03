@@ -26,13 +26,11 @@ public class ClienteController implements Serializable {
     //Business logic
     //@Inject @DAOJdbc    //Inject DAO JDBC Implementation
     //@Inject @DAOJpa       //JPA DAO implementation
-    @Inject
-    @DAOList  //Inject DAO ArrayList testing implementation         
+    @Inject @DAOList  //Inject DAO ArrayList testing implementation         
     private ClienteDAO clienteDAO;
 
     //View-Model
     private Cliente cliente;
-    private int editRow = 0;      //current client editable
 
     public ClienteController() {
     }
@@ -108,29 +106,32 @@ public class ClienteController implements Serializable {
     }
 
     //ACTIONS for listado_din.xhtml view
+
     /**
-     * Check if current row has edit mode enabled
+     * Set current client from datatable for in-line edition
      */
-    public boolean isEditable(int row) {
-        return editRow == row;
+    public void editRow(Cliente cliente) {
+
+        this.cliente=cliente;
     }
 
     /**
-     * Enable row edit model
+     * Cancel row edit
      */
-    public void setEditRow(int row) {
-        this.editRow = row;
+    public void cancelEditRow() {
+        this.cliente = new Cliente();
     }
 
     /**
-     * Update current row from table to DAO
+     * Update current client 
      */
-    public void guarda(Cliente cliente) {
+    public void actualizaCliente() {
 
         clienteDAO.guarda(cliente);
-        editRow = 0;
-    }
 
+        cancelEditRow();
+    }
+    
     //Sample logout action
     public String logout() {
         FacesContext facesContext = FacesContext.getCurrentInstance();
