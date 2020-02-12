@@ -6,7 +6,7 @@
 
     <ui:define name="content">
         <h1>Alta Cliente</h1>
-        <h:form styleClass="well" >
+        <h:form styleClass="" >
             <label>Nombre:</label><h:inputText styleClass="form-control" label="Nombre" id="idNombre"
                                  value="#{clienteCtrl.cliente.nombre}" required="true">
                 <!--f:validateLength minimum="4" maximum="25"/-->
@@ -17,9 +17,13 @@
                 <!--f:validateRegex pattern="\d{7,8}-?[a-zA-Z]" /-->
             </h:inputText>
             <p><h:message styleClass="form-text text-danger" for="idDNI" /></p>
-            <label>Socio:</label> <h:selectBooleanCheckbox styleClass="form-control" label="Socio" value="#{clienteCtrl.cliente.socio}"><br/>
-            <f:ajax render="idTipoSocio" execute="@this"/>
-            </h:selectBooleanCheckbox> <p style="form-text">(marcar para acceder a tipo de socio y actualizar vista con AJAX)</p>
+            <div class="form-group form-check">
+                <h:selectBooleanCheckbox styleClass="form-check-input" label="Socio" value="#{clienteCtrl.cliente.socio}"><br/>
+                    <f:ajax render="idTipoSocio" execute="@this"/>
+                </h:selectBooleanCheckbox> 
+                <label class="form-check-label">Socio:</label> 
+             </div>
+            <p style="form-text">(marcar para acceder a tipo de socio y actualizar vista con AJAX)</p>
             <h:panelGroup id="idTipoSocio" >
                 <ui:fragment  rendered="#{clienteCtrl.cliente.socio}">    
                     <label>Tipo Socio:</label>

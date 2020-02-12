@@ -17,7 +17,10 @@
                 <!--f:validateRegex pattern="\d{7,8}-?[a-zA-Z]" /-->
             </h:inputText>
             <p><h:message styleClass="form-text text-danger" for="idDNI" /></p>
-            <label>Socio:</label> <h:selectBooleanCheckbox styleClass="form-control" label="Socio" value="#{clienteCtrl.cliente.socio}" />
+                <div class="form-group form-check">
+                    <h:selectBooleanCheckbox styleClass="form-check-input" value="#{clienteCtrl.cliente.socio}" />
+                    <label class="form-check-label">Socio:</label> 
+                </div>
             <h:commandButton styleClass="btn btn-primary" value="Guardar" action="#{clienteCtrl.crea}"/>
             <h:button styleClass="btn btn-default" value="Cancelar" outcome="listado" />
         </h:form>

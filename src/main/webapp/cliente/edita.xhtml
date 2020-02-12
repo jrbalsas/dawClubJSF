@@ -19,7 +19,7 @@
 
         <ui:fragment  rendered="#{clienteCtrl.cliente != null}">    
 
-            <h:form styleClass="well" id="formCliente">
+            <h:form styleClass="" id="formCliente">
                 <h3>ID: <h:outputText value="#{clienteCtrl.cliente.id}" /></h3><h:inputHidden value="#{clienteCtrl.cliente.id}"/>
                 <label>Nombre:</label> <h:inputText styleClass="form-control" label="Nombre" id="idNombre" value="#{clienteCtrl.cliente.nombre}"
                                                     required="true" />
@@ -27,7 +27,10 @@
                 <label>DNI:</label> <h:inputText styleClass="form-control" label="DNI" id="idDNI" value="#{clienteCtrl.cliente.dni}"
                                                  required="true" />
                 <p><h:message styleClass="form-text text-danger" for="idDNI" /></p>
-                <label>Socio:</label> <h:selectBooleanCheckbox styleClass="form-control" value="#{clienteCtrl.cliente.socio}" />
+                <div class="form-group form-check">
+                    <h:selectBooleanCheckbox styleClass="form-check-input" value="#{clienteCtrl.cliente.socio}" />
+                    <label class="form-check-label">Socio:</label> 
+                </div>
                 <h:commandButton styleClass="btn btn-primary" value="Guardar" action="#{clienteCtrl.guarda}"/>
                 <h:button styleClass="btn btn-cancel" value="Cancelar" outcome="listado" />
             </h:form>

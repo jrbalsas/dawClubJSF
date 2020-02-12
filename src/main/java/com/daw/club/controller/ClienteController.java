@@ -29,6 +29,9 @@ public class ClienteController implements Serializable {
     @Inject @DAOList  //Inject DAO ArrayList testing implementation         
     private ClienteDAO clienteDAO;
 
+    @Inject
+    FacesContext fc;
+    
     //View-Model
     private Cliente cliente;
 
@@ -61,9 +64,8 @@ public class ClienteController implements Serializable {
      */
     public void recupera() {
         cliente = clienteDAO.buscaId(cliente.getId());
-        if (cliente == null) {
-            FacesContext facesContext = FacesContext.getCurrentInstance();
-            facesContext.addMessage(null, new FacesMessage("El cliente indicado no existe"));
+        if (cliente == null) {            
+            fc.addMessage(null, new FacesMessage("El cliente indicado no existe"));
         }
     }
 
@@ -83,7 +85,6 @@ public class ClienteController implements Serializable {
     public String guarda() {
 //      Programatic validation
 //        if (valida(c.getDni())==false) {
-//            FacesContext fc=FacesContext.getCurrentInstance();
 //            fc.addMessage("formCliente:idDNI", new FacesMessage("La letra no coincide con el DNI"));
 //            return ""; //Stay on view to correct error
 //        } 
@@ -134,8 +135,7 @@ public class ClienteController implements Serializable {
     
     //Sample logout action
     public String logout() {
-        FacesContext facesContext = FacesContext.getCurrentInstance();
-        facesContext.getExternalContext().invalidateSession();
+        fc.getExternalContext().invalidateSession();
         return "/index?faces-redirect=true";
 
     }

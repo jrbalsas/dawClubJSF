@@ -27,7 +27,7 @@
                 <h:column>
                     <f:facet name="header">Socio</f:facet>
                     <h:outputText value="#{cliente.socio?'Sí':'No'}" rendered="#{clienteCtrl.cliente.id!=cliente.id}"/>
-                    <h:selectBooleanCheckbox value="#{clienteCtrl.cliente.socio}" rendered="#{clienteCtrl.cliente.id==cliente.id}" class="form-control"/>
+                    <h:selectBooleanCheckbox value="#{clienteCtrl.cliente.socio}" rendered="#{clienteCtrl.cliente.id==cliente.id}" class="form-check-inline"/>
                 </h:column>
                 <h:column>
                     <f:facet name="header">Opciones</f:facet>
