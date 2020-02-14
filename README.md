@@ -5,7 +5,7 @@ Sample Maven Netbeans project with JSF CRUD Web App
 
 Features:
 -------------
-- Simple DAOList for testing purpose
+- Simple DAOMap for testing purpose
 - Sample DAOJDBC implementation
 - Sample DAOJPA implementation
 - Uses CDI annotations with qualifiers for DAO selection in Controller
