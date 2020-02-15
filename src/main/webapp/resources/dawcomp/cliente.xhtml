@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:cc="http://xmlns.jcp.org/jsf/composite">
+
+    <!-- Sample Composite component for rendering a entity -->
+    
+    <!-- INTERFACE -->
+    <cc:interface>
+        <cc:attribute name="value" class="com.daw.club.model.Cliente"/>
+    </cc:interface>
+    
+
+    <!-- IMPLEMENTATION -->
+    <cc:implementation>
+        <ul class="panel-body list-group">
+
+            <li class="list-group-item"><strong>ID:</strong> #{cc.attrs.value.id}</li>
+            <li class="list-group-item"><strong>Nombre:</strong> #{cc.attrs.value.nombre}</li>
+            <li class="list-group-item"><strong>DNI:</strong> #{cc.attrs.value.dni}</li>
+            <li class="list-group-item"><strong>Socio:</strong> #{cc.attrs.value.socio?"Sí":"No"}</li>
+        </ul>
+
+    </cc:implementation>
+</html>

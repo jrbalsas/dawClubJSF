@@ -1,4 +1,4 @@
-package com.daw.club.controller;
+package com.daw.club;
 
 import javax.faces.annotation.FacesConfig;
 

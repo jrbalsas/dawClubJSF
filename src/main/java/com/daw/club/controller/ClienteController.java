@@ -2,6 +2,8 @@ package com.daw.club.controller;
 
 import com.daw.club.model.Cliente;
 import com.daw.club.model.dao.ClienteDAO;
+import com.daw.club.qualifiers.DAOJdbc;
+import com.daw.club.qualifiers.DAOJpa;
 import com.daw.club.qualifiers.DAOMap;
 import java.io.Serializable;
 import java.util.List;
