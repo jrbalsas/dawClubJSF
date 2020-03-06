@@ -6,11 +6,9 @@ Sample Maven Netbeans project with JSF CRUD Web App
 Features:
 -------------
 - Simple DAOMap for testing purpose
-- Sample DAOJDBC implementation
 - Sample DAOJPA implementation
 - Uses CDI annotations with qualifiers for DAO selection in Controller
-- Resource injection for JNDI connetion pool
-- EntityManagerFactory CDI Producer method for EntityManager Injection in Servlet containers, i.e. Tomcat...
+- Resource injection for JNDI connection pool
 - Bean Validation with customized messages on ValidationMessages.properties
 - Simple Entity CRUD views
 - DataTable row editing view
@@ -20,16 +18,17 @@ Features:
 
 ## Requeriments
 
-- JEE Application Server, i.e. Payara, Glassfish
+- Jakarta EE 8 Application Server, e.g. Payara
 
 ## Usage
 - Compile and deploy in a JEE Application Server
 
 ### DB Access:
 1. Configure JEE Datasource in web.xml
-2. WEB-INF/DBInitScript.sql can be used to create required table and insert sample data into database
-3. Select JDBC or JPA DAOs implementation in controller
-4. JPA DAO requires enable JNDI datasource in persistence.xml
+2. resources/META-INF/sql/schema.sql can be used to create tables not manated by JPA
+3. resources/META-INF/sql/sampledata.sql used to insert sample data into database
+4. Select Map or JPA DAOs implementation in controller
+5. JPA DAO requires enable JNDI datasource in persistence.xml
 
 ### Realm Authentication/Authorization:
 1. Create Realm in JEE Application Server, e.g. using AS GUI/asadmin tool

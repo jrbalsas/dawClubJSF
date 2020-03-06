@@ -2,7 +2,6 @@ package com.daw.club.controller;
 
 import com.daw.club.model.Cliente;
 import com.daw.club.model.dao.ClienteDAO;
-import com.daw.club.qualifiers.DAOJdbc;
 import com.daw.club.qualifiers.DAOJpa;
 import com.daw.club.qualifiers.DAOMap;
 import java.io.Serializable;
@@ -24,8 +23,7 @@ public class ClienteController implements Serializable {
     private final Logger logger = Logger.getLogger(ClienteController.class.getName());
 
     //Business logic
-    //@Inject @DAOJdbc  //Inject DAO JDBC Implementation
-    //@Inject @DAOJpa   /JPA DAO implementation
+    //@Inject @DAOJpa   //JPA DAO implementation
     @Inject @DAOMap     //Inject DAO Map testing implementation         
     private ClienteDAO clienteDAO;
 

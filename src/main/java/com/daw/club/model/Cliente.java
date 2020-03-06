@@ -14,7 +14,7 @@ import javax.validation.constraints.Size;
 public class Cliente implements Serializable {
 
     @Id         //JPA annotations
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY) //Auto-incremental
     private int id;
 
     @Size(min = 4, max = 25, message = "La longitud ${validatedValue} debe estar entre {min} y {max} caracteres")

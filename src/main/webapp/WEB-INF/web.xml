@@ -41,12 +41,11 @@
     <!-- Creation of Datasource in Application Server -->
     <data-source>
         <name>java:global/jdbc/gestClub</name>
-        <class-name>org.apache.derby.jdbc.ClientConnectionPoolDataSource</class-name>        
-        <server-name>localhost</server-name>
-        <port-number>1527</port-number>
-        <database-name>club</database-name>
-        <user>dawuser1</user>
-        <password>dawuser1</password>                                
+        <class-name>org.h2.jdbcx.JdbcDataSource</class-name>
+        <url>jdbc:h2:~/h2db/dawclub;AUTO_SERVER=TRUE</url>
+<!--         <url>jdbc:h2:mem:dawclub;DB_CLOSE_DELAY=-1</url> -->
+        <user>dawuser</user>
+        <password>dawuser</password> 
         <initial-pool-size>2</initial-pool-size>
         <max-pool-size>10</max-pool-size>
         <min-pool-size>5</min-pool-size>

@@ -3,8 +3,6 @@ package com.daw.club.model.dao;
 import com.daw.club.model.Cliente;
 import com.daw.club.qualifiers.DAOMap;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,7 +28,7 @@ public class ClienteDAOMap implements ClienteDAO, Serializable{
     
     @Override
     public Cliente buscaId(Integer id) {
-        return clientes.get(id);
+        return new Cliente(clientes.get(id));
     }
     @Override
     public List<Cliente> buscaTodos() {
@@ -71,6 +69,19 @@ public class ClienteDAOMap implements ClienteDAO, Serializable{
     
     public int numClientes() {
         return clientes.size();
+    }
+
+    @Override
+    public Cliente buscaByNIF(String nif) {
+        //return clientes.values().stream().filter( c -> c.getDni().equals(nif)).findAny().orElse(null);
+        Cliente localizado = null;
+        for (Cliente c: clientes.values()) {
+            if (c.getDni().equals(nif)) {
+                localizado=c;
+                break;
+            }            
+        }
+        return new Cliente(localizado);
     }
 
 }
