@@ -52,7 +52,7 @@
     </data-source>
 
     <!-- Realm Access Rules -->
-<!--  Remove comments for enable authentication&authorization
+<!--  Remove comments for enable authentication&authorization -->
 
     <security-constraint>
         <display-name>CLIENTE</display-name>
@@ -60,15 +60,26 @@
             <web-resource-name>cliente</web-resource-name>
             <url-pattern>/cliente/*</url-pattern>
         </web-resource-collection>
-
+<!--
            <auth-constraint>
                <role-name>USUARIOS</role-name>
                <role-name>ADMINISTRADORES</role-name>
            </auth-constraint>
-     </security-constraint>
-    -->
+-->
+             </security-constraint>
 
-    <login-config>
+
+<!-- Define roles used in security-constraint rules -->
+    <security-role>
+        <role-name>USUARIOS</role-name>
+    </security-role>
+    <security-role>
+        <role-name>ADMINISTRADORES</role-name>
+    </security-role>
+
+    <!-- Config for using Application Server authentication Realm -->
+<!--
+         <login-config>
         <auth-method>FORM</auth-method>
         <realm-name>file</realm-name>
         <form-login-config>
@@ -76,12 +87,6 @@
             <form-error-page>/login.jsf?error=true</form-error-page>
         </form-login-config>
     </login-config>
-    <security-role>
-        <description/>
-        <role-name>USUARIOS</role-name>
-    </security-role>
-    <security-role>
-        <description/>
-        <role-name>ADMINISTRADORES</role-name>
-    </security-role>
+-->         
+
 </web-app>

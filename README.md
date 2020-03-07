@@ -8,13 +8,17 @@ Features:
 - Simple DAOMap for testing purpose
 - Sample DAOJPA implementation
 - Uses CDI annotations with qualifiers for DAO selection in Controller
-- Resource injection for JNDI connection pool
 - Bean Validation with customized messages on ValidationMessages.properties
 - Simple Entity CRUD views
 - DataTable row editing view
 - Sample view modification using AJAX
-- Optional Authentication/Authorization rules and Logout button
+- H2 database connection
+- Standard JNDI connection pool definition in web.xml
 - Persistence.xml configuration with JNDI datasource
+- Optional access control rules
+- JEE Security API options :
+    - IdentityStores: Embedded, Database, Custom
+    - HttpAuthenticationMethods: Basic, Form, CustomJSF Form/controller
 
 ## Requeriments
 
@@ -28,9 +32,8 @@ Features:
 2. resources/META-INF/sql/schema.sql can be used to create tables not manated by JPA
 3. resources/META-INF/sql/sampledata.sql used to insert sample data into database
 4. Select Map or JPA DAOs implementation in controller
-5. JPA DAO requires enable JNDI datasource in persistence.xml
 
-### Realm Authentication/Authorization:
-1. Create Realm in JEE Application Server, e.g. using AS GUI/asadmin tool
-2. Uncomment/Create Security-constraints in web.xml
-3. Select valid realm in web.xml
+### Access control:
+1. Uncomment access-restriction section in access control rules (web.xml)
+2. Uncomment required IdentityStore/s in AppConfig class. Custom ClubIdentityStore available by default
+3. Uncomment required HttpAuthenticationMechanism in AppConfig class. Standard Form by default

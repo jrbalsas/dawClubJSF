@@ -2,7 +2,6 @@ package com.daw.club.controller;
 
 import com.daw.club.model.Cliente;
 import com.daw.club.model.dao.ClienteDAO;
-import com.daw.club.qualifiers.DAOJpa;
 import com.daw.club.qualifiers.DAOMap;
 import java.io.Serializable;
 import java.util.List;
@@ -131,13 +130,6 @@ public class ClienteController implements Serializable {
         cancelEditRow();
     }
     
-    //Sample logout action
-    public String logout() {
-        fc.getExternalContext().invalidateSession();
-        return "/index?faces-redirect=true";
-
-    }
-
     //VALIDADORES Faces. Using Bean Validation instead
 //    public void validaNombre(FacesContext context, UIComponent inputNombre,
 //                                Object value) {

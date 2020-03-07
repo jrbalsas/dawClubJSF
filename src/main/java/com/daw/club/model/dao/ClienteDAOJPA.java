@@ -74,7 +74,7 @@ public class ClienteDAOJPA implements ClienteDAO, Serializable {
         List<String> l = new ArrayList<>();
         try {
             Query q = em.createNativeQuery("Select dni,nombre from Cliente");
-            //No maping entity
+            //No mapping entity
             List<Objects[]> lt = q.getResultList();
             for (Object[] o : lt) {
                 //Access fields using ordinal position
