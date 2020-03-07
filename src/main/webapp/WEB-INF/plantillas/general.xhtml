@@ -2,16 +2,17 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-    
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-<!--
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"  />
--->
+        <!--
+                <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"  />
+        -->
         <h:outputStylesheet library="webjars" name="bootstrap/4.4.1/css/bootstrap.min-jsf.css"  />
+        <h:outputStylesheet library="css" name="main.css"  />
         <h:outputScript library="webjars" name="jquery/3.0.0/jquery.js" /> 
-        
+
         <title>Club de Tenis</title>
     </h:head>
 
@@ -27,18 +28,17 @@
                 <h2>Menú</h2>
 
                 <ul class="nav nav-pills flex-column">                                    
+                    <!--Sample Personalized Logout button-->
+                    <!--Enable Realm authentication and authorization to show it after login-->
+                    <c:if test="${not empty request.remoteUser}">
+                        <li><h:link styleClass="nav-item btn btn-warning" outcome="/logout">Logout #{request.remoteUser}</h:link>
+                        </li>
+                    </c:if>
                     <li class="nav-item">  <h:link outcome="/index" value="Inicio" class="nav-link"/></li>
-                
+                </ul>                
+
                 <ui:insert name="left"><!--left content--></ui:insert>
-                
-                <!--Sample Personalized Logout button-->
-                <!--Enable Realm authentication and authorization to show it after login-->
-                <ui:fragment rendered="#{not empty request.remoteUser}">
-                    <li><h:link styleClass="nav-item btn btn-warning" outcome="/logout">Logout #{request.remoteUser}</h:link>
-                    </li>
-                </ui:fragment>
-                </ul>
-                
+
             </nav>
             <section id="content" class="col-md-10">
                 <ui:insert name="content"> <h1>Bienvenidos</h1> <br/><br/></ui:insert>
