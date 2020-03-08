@@ -14,6 +14,7 @@ import javax.security.enterprise.SecurityContext;
 import javax.security.enterprise.authentication.mechanism.http.AuthenticationParameters;
 import javax.security.enterprise.credential.Credential;
 import javax.security.enterprise.credential.UsernamePasswordCredential;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.constraints.NotEmpty;
@@ -38,6 +39,9 @@ public class ClubLoginController implements Serializable{
     
     @Inject
     ExternalContext ec;
+    
+    @Inject
+    HttpServletRequest request; //needed for logout
         
     //model-view
     @Size(min=4, max=16, message = "Identificador entre {min} y {max} caracteres")
@@ -72,7 +76,6 @@ public class ClubLoginController implements Serializable{
         
         ap.credential(credentials).newAuthentication(true);       
 
-        HttpServletRequest request=(HttpServletRequest)ec.getRequest();
         HttpServletResponse response=(HttpServletResponse)ec.getResponse();
         
         //Programatic authentication
@@ -88,8 +91,10 @@ public class ClubLoginController implements Serializable{
     }
     
     //Sample logout action for Form/CustomForm Authentication
-    public String logout() {
-        ec.invalidateSession();        
+    public String logout() throws ServletException {
+        request.logout();
+        request.getSession().invalidate();
+        //ec.invalidateSession();        
         return "/index?faces-redirect=true";
 
     }

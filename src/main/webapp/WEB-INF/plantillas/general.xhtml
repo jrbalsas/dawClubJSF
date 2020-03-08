@@ -29,8 +29,8 @@
 
                 <ul class="nav nav-pills flex-column">                                    
                     <!--Sample Personalized Logout button-->
-                    <!--Enable Realm authentication and authorization to show it after login-->
-                    <c:if test="${not empty request.remoteUser}">
+                    <!--Enable access control (web.xml) to show it after login-->
+                    <c:if test="#{not empty request.remoteUser}">
                         <li><h:link styleClass="nav-item btn btn-warning" outcome="/logout">Logout #{request.remoteUser}</h:link>
                         </li>
                     </c:if>
