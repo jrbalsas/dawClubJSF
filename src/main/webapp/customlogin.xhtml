@@ -7,8 +7,8 @@
         <p>(Formulario de autenticación personalizado JSF)</p>
         <h:messages class="alert alert-danger"/>
         <h:form >
-            <label>Usuario</label><h:inputText value="#{clubLoginController.username}" title="Login" class="form-control"/>
-            <label>Clave</label><h:inputSecret value="#{clubLoginController.password}" title="Login" class="form-control"/>
+            <label>Usuario</label><h:inputText value="#{clubLoginController.username}"  class="form-control"/>
+            <label>Clave</label><h:inputSecret value="#{clubLoginController.password}"  class="form-control"/>
             <h:commandLink class="btn btn-primary" value="Identificarse" action="#{clubLoginController.login()}"/>
         </h:form>
     </ui:define>
