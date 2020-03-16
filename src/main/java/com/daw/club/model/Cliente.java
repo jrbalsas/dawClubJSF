@@ -15,7 +15,7 @@ public class Cliente implements Serializable {
 
     @Id         //JPA annotations
     @GeneratedValue(strategy = GenerationType.IDENTITY) //Auto-incremental
-    private int id;
+    private Integer id;
 
     @Size(min = 4, max = 25, message = "La longitud ${validatedValue} debe estar entre {min} y {max} caracteres")
     private String nombre;
@@ -29,7 +29,7 @@ public class Cliente implements Serializable {
         socio = false;
     }
 
-    public Cliente(int id, String nombre, String dni, boolean socio) {
+    public Cliente(Integer id, String nombre, String dni, boolean socio) {
         this.id = id;
         this.nombre = nombre;
         this.dni = dni;
@@ -49,14 +49,14 @@ public class Cliente implements Serializable {
     /**
      * @return the id
      */
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
     /**
      * @param id the id to set
      */
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
