@@ -1,4 +1,4 @@
-dawClub using JSF [![Build Status](https://travis-ci.org/jrbalsas/dawClubJSF.svg?branch=master)](https://travis-ci.org/jrbalsas/dawClubJSF)
+dawClub using JSF [![Build Status](https://travis-ci.com/jrbalsas/dawClubJSF.svg?branch=master)](https://travis-ci.org/jrbalsas/dawClubJSF)
 ==========
 
 Sample Maven Netbeans project with JSF CRUD Web App
