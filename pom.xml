@@ -33,11 +33,17 @@
             <artifactId>javax.security.enterprise</artifactId>
             <version>1.0</version>
         </dependency>
-
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-api</artifactId>
             <version>${jakartaee}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>1.4.197</version>
+            <!-- Change to runtime if not provided by application server, e.g. WildFly-->
             <scope>provided</scope>
         </dependency>
 
