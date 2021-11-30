@@ -22,6 +22,11 @@
             <property name="eclipselink.logging.level" value="INFO"/>
             <property name="eclipselink.logging.parameters" value="true"/>
             <property name="eclipselink.logging.level.sql" value="FINE"/>
+
+            <!-- Hibernate specific properties e.g. debug level -->
+            <property name="hibernate.show_sql" value="true"/>
+            
+            <!-- <property name="wildfly.jpa.twophasebootstrap" value="false"/> -->
         </properties>
     </persistence-unit>
 </persistence>

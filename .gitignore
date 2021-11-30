@@ -13,3 +13,6 @@ nb-configuration.xml
 .classpath
 .project
 .settings/
+
+#IntelliJ
+.idea/
