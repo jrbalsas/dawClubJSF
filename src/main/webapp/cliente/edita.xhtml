@@ -1,6 +1,6 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
-                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
                 template="/WEB-INF/plantillas/general.xhtml"
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
 
@@ -31,6 +31,13 @@
                     <h:selectBooleanCheckbox styleClass="form-check-input" value="#{clienteCtrl.cliente.socio}" />
                     <label class="form-check-label">Socio:</label> 
                 </div>
+                <label>Fecha Nacimiento:</label>
+                    <!-- force datepicker html5 input box with p:type="date" -->
+                    <h:inputText p:type="date" styleClass="form-control" label="FNac" id="idFNac" value="#{clienteCtrl.cliente.fechaNacimiento}">
+                        <!-- convert date to input datepicker LocalDate format-->
+                        <f:convertDateTime type="localDate" pattern="yyyy-MM-dd" />
+                    </h:inputText>
+                <p><h:message styleClass="form-text text-danger" for="idFNac" /></p>
                 <h:commandButton styleClass="btn btn-primary" value="Guardar" action="#{clienteCtrl.guarda}"/>
                 <h:button styleClass="btn btn-cancel" value="Cancelar" outcome="listado" />
             </h:form>

@@ -1,6 +1,7 @@
 package com.daw.club.model;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,6 +24,8 @@ public class Cliente implements Serializable {
     private String dni;
     private boolean socio;
 
+    private LocalDate fechaNacimiento;
+
     public Cliente() {
         id = 0;
         nombre = "Desconocido";
@@ -44,6 +47,7 @@ public class Cliente implements Serializable {
         this.nombre = c.nombre;
         this.dni = c.dni;
         this.socio = c.socio;
+        this.fechaNacimiento = c.fechaNacimiento;
     }
 
     /**
@@ -100,6 +104,14 @@ public class Cliente implements Serializable {
      */
     public void setSocio(boolean socio) {
         this.socio = socio;
+    }
+
+    public LocalDate getFechaNacimiento() {
+        return fechaNacimiento;
+    }
+
+    public void setFechaNacimiento(LocalDate fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
     }
 
     @Override

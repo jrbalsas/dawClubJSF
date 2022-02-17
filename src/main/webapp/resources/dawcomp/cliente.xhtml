@@ -1,7 +1,8 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:cc="http://xmlns.jcp.org/jsf/composite">
+      xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
 
     <!-- Sample Composite component for rendering a entity -->
     
@@ -19,6 +20,11 @@
             <li class="list-group-item"><strong>Nombre:</strong> #{cc.attrs.value.nombre}</li>
             <li class="list-group-item"><strong>DNI:</strong> #{cc.attrs.value.dni}</li>
             <li class="list-group-item"><strong>Socio:</strong> #{cc.attrs.value.socio?"Sí":"No"}</li>
+            <li class="list-group-item"><strong>Fecha nacimiento:</strong>
+                <h:outputText value="#{cc.attrs.value.fechaNacimiento}">
+                    <f:convertDateTime type="localDate" pattern="dd/MM/YYYY" />
+                </h:outputText>
+            </li>
         </ul>
 
     </cc:implementation>
