@@ -42,7 +42,7 @@ public class ClienteDAOJPA implements ClienteDAO, Serializable {
         } catch (Exception ex) {
             logger.log(Level.SEVERE, ex.getMessage(), ex);
 
-        };
+        }
         return c;
     }
     @Override
@@ -50,7 +50,7 @@ public class ClienteDAOJPA implements ClienteDAO, Serializable {
         List<Cliente> lc = null;
         try {
             Query q = em.createQuery("Select c from Cliente c", Cliente.class);
-            lc = q.getResultList();
+            lc = (List<Cliente>)q.getResultList();
         } catch (Exception ex) {
             logger.log(Level.SEVERE, ex.getMessage(), ex);
         }
