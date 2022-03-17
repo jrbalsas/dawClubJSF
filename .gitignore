@@ -1,3 +1,4 @@
+#Netbeans
 nbproject/private/
 build/
 nbbuild/
@@ -6,8 +7,6 @@ nbdist/
 nbactions.xml
 nb-configuration.xml
 .nb-gradle/
-/target/
-**/faces-config.NavData
 
 #Eclipse project
 .classpath
@@ -16,3 +15,9 @@ nb-configuration.xml
 
 #IntelliJ
 .idea/
+
+#vscode
+.vscode/
+
+/target/
+**/faces-config.NavData
