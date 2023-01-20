@@ -7,13 +7,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-import javax.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped      //Elegible for Dependency Injection
 @DAOMap
 public class ClienteDAOMap implements ClienteDAO, Serializable{
 
-    private  Map<Integer, Cliente> clientes=null;
+    private  Map<Integer, Cliente> clientes;
     private  Integer idCliente = 1;
 
     public ClienteDAOMap() {

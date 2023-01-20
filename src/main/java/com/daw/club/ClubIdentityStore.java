@@ -4,12 +4,12 @@ import com.daw.club.services.ClubAuthService;
 import com.daw.club.qualifiers.DAOMap;
 import java.util.Set;
 import java.util.logging.Logger;
-import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
-import javax.security.enterprise.credential.UsernamePasswordCredential;
-import javax.security.enterprise.identitystore.CredentialValidationResult;
-import static javax.security.enterprise.identitystore.CredentialValidationResult.INVALID_RESULT;
-import javax.security.enterprise.identitystore.IdentityStore;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
+import jakarta.security.enterprise.credential.UsernamePasswordCredential;
+import jakarta.security.enterprise.identitystore.CredentialValidationResult;
+import static jakarta.security.enterprise.identitystore.CredentialValidationResult.INVALID_RESULT;
+import jakarta.security.enterprise.identitystore.IdentityStore;
 
 /**
  * Sample Customized JEE Security IdentityStore

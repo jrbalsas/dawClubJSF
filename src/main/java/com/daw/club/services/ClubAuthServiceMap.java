@@ -8,10 +8,10 @@ import java.util.Map;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.annotation.PostConstruct;
-import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
-import javax.security.enterprise.identitystore.Pbkdf2PasswordHash;
+import jakarta.annotation.PostConstruct;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
+import jakarta.security.enterprise.identitystore.Pbkdf2PasswordHash;
 
 /**
  * Sample Authentication service with in memory encrypted passwords
@@ -33,7 +33,7 @@ public class ClubAuthServiceMap implements ClubAuthService {
 
     @PostConstruct
     public void init() {
-        //Configure encryption algorithmn
+        //Configure encryption algorithm
         Map<String, String> parameters = new HashMap<>();
         parameters.put("Pbkdf2PasswordHash.Iterations", "3072");
         parameters.put("Pbkdf2PasswordHash.Algorithm", "PBKDF2WithHmacSHA512");
