@@ -1,7 +1,7 @@
 dawClub using JSF [![Build Status](https://travis-ci.com/jrbalsas/dawClubJSF.svg?branch=master)](https://travis-ci.com/jrbalsas/dawClubJSF)
 ==========
 
-Sample Maven Netbeans project with JSF CRUD Web App
+Sample Maven project with JSF CRUD Web App
 
 Features:
 -------------
@@ -22,10 +22,12 @@ Features:
 
 ## Requeriments
 
-- Jakarta EE 8 Application Server, e.g. Payara
-- WildFly 20+ [requires](https://docs.wildfly.org/26/WildFly_Elytron_Security.html#Elytron_and_Java_Authentication_SPI_for_Containers-JASPI) 
+- Jakarta EE 10 Application Server, e.g. Payara
+- WildFly 20+:
+  - [Requires](https://docs.wildfly.org/27/WildFly_Elytron_Security.html#Elytron_and_Java_Authentication_SPI_for_Containers-JASPI) 
 disabling integrated JASPI to support Jakarta EE Security API. There is a configuration script to apply these 
 changes in https://github.com/wildfly/quickstart/tree/main/ee-security#configure-the-server
+  - Add H2 Database runtime support to pom.xml  
 
 ## Usage
 - Compile and deploy in a JEE Application Server

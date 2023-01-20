@@ -42,7 +42,7 @@
     <data-source>
         <name>java:global/jdbc/gestClub</name>
         <class-name>org.h2.jdbcx.JdbcDataSource</class-name>
-        <url>jdbc:h2:~/h2db/dawclub;AUTO_SERVER=TRUE</url>
+        <url>jdbc:h2:~/h2db/dawclub;MODE=LEGACY;AUTO_SERVER=TRUE</url>
 <!--         <url>jdbc:h2:mem:dawclub;DB_CLOSE_DELAY=-1</url> -->
         <user>dawuser</user>
         <password>dawuser</password> 
