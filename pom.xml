@@ -49,6 +49,7 @@
 
     </dependencies>
     <build>
+        <finalName>club</finalName>
         <plugins>
             <plugin>
                 <groupId>fish.payara.maven.plugins</groupId>
