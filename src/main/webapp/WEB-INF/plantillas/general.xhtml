@@ -29,8 +29,9 @@
                 <ul class="nav nav-pills flex-column">                                    
                     <!--Sample Personalized Logout button-->
                     <!--Enable access control (web.xml) to show it after login-->
-                    <c:if test="#{not empty request.remoteUser}">
-                        <li><h:link styleClass="nav-item btn btn-warning" outcome="/logout">Logout #{request.remoteUser}</h:link>
+                    <c:if test="#{not empty request.userPrincipal}">
+                        <!-- Custom ClubPrincipal properties can be used, e.g.: #{request.userPrincipal.usuario.nombre} -->
+                        <li><h:link styleClass="nav-item btn btn-warning" outcome="/logout">Logout #{request.userPrincipal.name}</h:link>
                         </li>
                     </c:if>
                     <li class="nav-item">  <h:link outcome="/index" value="Inicio" class="nav-link"/></li>

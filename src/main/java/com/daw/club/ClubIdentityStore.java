@@ -1,5 +1,8 @@
 package com.daw.club;
 
+import com.daw.club.model.Cliente;
+import com.daw.club.model.ClubPrincipal;
+import com.daw.club.model.dao.ClienteDAO;
 import com.daw.club.services.ClubAuthService;
 import com.daw.club.qualifiers.DAOMap;
 import java.util.Set;
@@ -24,6 +27,9 @@ public class ClubIdentityStore implements IdentityStore {
     @Inject @DAOMap
     private ClubAuthService authService;
 
+    @Inject @DAOMap
+    private ClienteDAO clientesDAO;
+
     public ClubIdentityStore() {
     }
 
@@ -32,13 +38,17 @@ public class ClubIdentityStore implements IdentityStore {
         String username = usernamePasswordCredential.getCaller();
         String password = usernamePasswordCredential.getPasswordAsString();
 
+        //Look for user
+        Cliente cliente= clientesDAO.buscaByNIF(username);
+
         //Check for valid credentials
-        if (authService.authUser(username, password)) {
+        if (cliente!=null && authService.authUser(username, password)) {
             //Get roles for valid user
             Set<String> roles = authService.getRoles(username);
-            
-            //Authenticate user in Application Server
-            return new CredentialValidationResult(username, roles);
+
+            //Authenticate user in Application Server and pass custom User information for Server Principal Object
+            return new CredentialValidationResult( new ClubPrincipal(cliente), roles);
+            //return new CredentialValidationResult( username, roles); //Server only needs username and roles to create default Principal object
         }
         //Credentials invalid
         return INVALID_RESULT;

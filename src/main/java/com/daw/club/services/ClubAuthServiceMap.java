@@ -24,11 +24,11 @@ public class ClubAuthServiceMap implements ClubAuthService {
 
     private static final Logger logger = Logger.getLogger(ClubAuthServiceMap.class.getName());
 
-    //Encryption algorithmn
+    //Encryption algorithm
     @Inject
     private Pbkdf2PasswordHash passwordHash;
 
-    //Sample user credentials in memory repository
+    //Sample user credentials in memory repository, use App users DAO on real app
     private Map<String, UserAuthInfo> users;
 
     @PostConstruct
