@@ -30,7 +30,7 @@
                     <!--Sample Personalized Logout button-->
                     <!--Enable access control (web.xml) to show it after login-->
                     <c:if test="#{not empty request.userPrincipal}">
-                        <!-- Custom ClubPrincipal properties can be used, e.g.: #{request.userPrincipal.usuario.nombre} -->
+                        <!-- Custom ClubPrincipal properties can be used, e.g.: request.userPrincipal.usuario.nombre -->
                         <li><h:link styleClass="nav-item btn btn-warning" outcome="/logout">Logout #{request.userPrincipal.name}</h:link>
                         </li>
                     </c:if>
