@@ -29,8 +29,8 @@
         <!-- required for in memory EmbeddedIdentityStore implementation -->
         <dependency>
             <groupId>org.glassfish.soteria</groupId>
-            <artifactId>javax.security.enterprise</artifactId>
-            <version>1.0</version>
+            <artifactId>jakarta.security.enterprise</artifactId>
+            <version>3.0.2</version>
         </dependency>
         <dependency>
             <groupId>jakarta.platform</groupId>
