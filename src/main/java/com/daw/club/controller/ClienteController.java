@@ -1,6 +1,7 @@
 package com.daw.club.controller;
 
 import com.daw.club.model.Cliente;
+import com.daw.club.model.ClubPrincipal;
 import com.daw.club.model.dao.ClienteDAO;
 import com.daw.club.qualifiers.DAOJpa;
 import com.daw.club.qualifiers.DAOMap;
@@ -13,6 +14,7 @@ import jakarta.faces.context.FacesContext;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
+import jakarta.security.enterprise.SecurityContext;
 
 @Named(value = "clienteCtrl")
 @ViewScoped
@@ -29,7 +31,10 @@ public class ClienteController implements Serializable {
 
     @Inject
     FacesContext fc;
-    
+
+    @Inject
+    SecurityContext sc; //Information about authenticated user
+
     //View-Model
     private Cliente cliente;
 
@@ -40,6 +45,14 @@ public class ClienteController implements Serializable {
     public void init() {
         //init  model-view
         cliente = new Cliente();
+
+        String userLogInfo=sc.getCallerPrincipal().getName(); //get default authenticated user info
+
+        if (sc.getCallerPrincipal() instanceof ClubPrincipal) {
+            //Custom authentication user info (created in ClubIdentityStore)
+            userLogInfo = ((ClubPrincipal) sc.getCallerPrincipal()).getUsuario().getNombre();
+        }
+        logger.info(String.format("Petición de usuario %s", userLogInfo ) );
     }
 
     //MODEL-VIEW access methods (controller bean properties)
