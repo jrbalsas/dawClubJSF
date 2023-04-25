@@ -31,6 +31,7 @@
             <groupId>org.glassfish.soteria</groupId>
             <artifactId>jakarta.security.enterprise</artifactId>
             <version>3.0.2</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>jakarta.platform</groupId>
