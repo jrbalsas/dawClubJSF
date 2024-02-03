@@ -6,6 +6,7 @@ import com.daw.club.model.dao.ClienteDAO;
 import com.daw.club.qualifiers.DAOJpa;
 import com.daw.club.qualifiers.DAOMap;
 import java.io.Serializable;
+import java.security.Principal;
 import java.util.List;
 import java.util.logging.Logger;
 import jakarta.annotation.PostConstruct;
@@ -30,10 +31,12 @@ public class ClienteController implements Serializable {
     private ClienteDAO clienteDAO;
 
     @Inject
-    FacesContext fc;
+    FacesContext fc; //Interaction with Faces front-controller
 
     @Inject
     SecurityContext sc; //Information about authenticated user
+
+    private Principal principal; //Current authenticated user
 
     //View-Model
     private Cliente cliente;
@@ -46,13 +49,19 @@ public class ClienteController implements Serializable {
         //init  model-view
         cliente = new Cliente();
 
-        String userLogInfo=sc.getCallerPrincipal().getName(); //get default authenticated user info
+        String currentUserName="Anónimo";
 
-        if (sc.getCallerPrincipal() instanceof ClubPrincipal) {
-            //Custom authentication user info (created in ClubIdentityStore)
-            userLogInfo = ((ClubPrincipal) sc.getCallerPrincipal()).getUsuario().getNombre();
+        principal=sc.getCallerPrincipal(); //Get authenticated user info if available
+
+        if (principal!=null) {
+            currentUserName=principal.getName(); //Get username from authenticated user
         }
-        logger.info(String.format("Petición de usuario %s", userLogInfo ) );
+
+        if (principal instanceof ClubPrincipal) {
+            //Custom authentication user info (created in ClubIdentityStore)
+            currentUserName = ((ClubPrincipal) principal).getUsuario().getNombre();
+        }
+        logger.info(String.format("Petición de usuario %s", currentUserName ) );
     }
 
     //MODEL-VIEW access methods (controller bean properties)
@@ -108,12 +117,14 @@ public class ClienteController implements Serializable {
      */
     public String borra() {
         clienteDAO.borra(cliente.getId());
+        fc.addMessage(null, new FacesMessage("Cliente borrado correctamente"));
         return "listado";
     }
 
     //ACTIONS for listado.xhtml view
     public String borra(Cliente cliente) {
         clienteDAO.borra(cliente.getId());
+        fc.addMessage(null, new FacesMessage("Cliente borrado correctamente"));
         return "listado";
     }
 

@@ -6,6 +6,7 @@
 
     <ui:define name="content">
         <h1>Listado de Clientes </h1>
+        <h:messages class="text-danger"/>
         <h:form>
             <h:dataTable styleClass="table table-striped" var="cliente" value="#{clienteCtrl.clientes}">
                 <h:column>
