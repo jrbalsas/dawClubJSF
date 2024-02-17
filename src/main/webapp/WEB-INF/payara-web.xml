@@ -2,4 +2,15 @@
 <!DOCTYPE payara-web-app PUBLIC "-//Payara.fish//DTD Payara Server 4 Servlet 3.0//EN" "https://docs.payara.fish/schemas/payara-web-app_4.dtd">
 <payara-web-app error-url="">
   <class-loader delegate="true"/>
+  <!-- Glassfish/Payara only: Alias URL for images
+       Create folder on server filesystem to upload/share public resources e.g /tmp/images or c:/tmp/images
+       Change "dir" attribute with an absolute path in server filesystem for shared folders, e.g. /tmp/ or c:/temp/
+       "from" attribute is the subfolder in dir folder which is shared relative to app URL Path, e.g. dawFileUpload/images
+  -->
+  <!--
+    <property name="alternatedocroot_1" value="from=/customerimg/* dir=/${user.home}/club" />
+
+    <property name="alternatedocroot_2" value="from=/movies/* dir=/${user.home}/club" />
+  -->
+
 </payara-web-app>

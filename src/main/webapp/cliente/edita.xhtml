@@ -15,11 +15,23 @@
 
         <h1>Edita Cliente</h1>
 
-        <h:messages class="text-danger"/>
+        <h:messages warnClass="text-warning" infoClass="text-info" errorClass="text-danger"/>
 
-        <ui:fragment  rendered="#{clienteCtrl.cliente != null}">    
+        <ui:fragment  rendered="#{clienteCtrl.cliente != null}">
+            <div class="row">
 
-            <h:form styleClass="" id="formCliente">
+            <div class="col-md-4">
+                <h:form id="formPhoto" enctype="multipart/form-data"  >
+                    <h:graphicImage id="customerImg" styleClass="img-fluid rounded"   value="/clienteimg/#{clienteCtrl.cliente.id}" />
+                    <div class="btn-group-sm">
+                    <h:inputFile styleClass="form-control btn btn-outline-primary btn-sm" value="#{clienteCtrl.imageFile}"  >
+                    </h:inputFile>
+                    <h:commandButton id="sendImageBt" styleClass="form-control btn btn-primary btn-sm"
+                                     action="#{clienteCtrl.cambiaImagen}" value="Cambiar Imagen"/>
+                    </div>
+                </h:form>
+            </div>
+            <h:form styleClass="col-md-8" id="formCliente">
                 <h3>ID: <h:outputText value="#{clienteCtrl.cliente.id}" /></h3><h:inputHidden value="#{clienteCtrl.cliente.id}"/>
                 <label>Nombre:</label> <h:inputText styleClass="form-control" label="Nombre" id="idNombre" value="#{clienteCtrl.cliente.nombre}"
                                                     required="true" />
@@ -41,6 +53,7 @@
                 <h:commandButton styleClass="btn btn-primary" value="Guardar" action="#{clienteCtrl.guarda}"/>
                 <h:button styleClass="btn btn-cancel" value="Cancelar" outcome="listado" />
             </h:form>
+            </div>
         </ui:fragment>
     </ui:define>
 

@@ -1,13 +1,22 @@
 package com.daw.club.controller;
 
+import com.daw.club.AppConfig;
 import com.daw.club.model.Cliente;
 import com.daw.club.model.ClubPrincipal;
 import com.daw.club.model.dao.ClienteDAO;
 import com.daw.club.qualifiers.DAOJpa;
 import com.daw.club.qualifiers.DAOMap;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.Serial;
 import java.io.Serializable;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 import java.security.Principal;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import jakarta.annotation.PostConstruct;
 import jakarta.faces.application.FacesMessage;
@@ -16,11 +25,13 @@ import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import jakarta.security.enterprise.SecurityContext;
+import jakarta.servlet.http.Part;
 
 @Named(value = "clienteCtrl")
 @ViewScoped
 public class ClienteController implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = 1L;
 
     private final Logger logger = Logger.getLogger(ClienteController.class.getName());
@@ -36,10 +47,14 @@ public class ClienteController implements Serializable {
     @Inject
     SecurityContext sc; //Information about authenticated user
 
+    @Inject
+    AppConfig appConfig;
+
     private Principal principal; //Current authenticated user
 
     //View-Model
     private Cliente cliente;
+    private Part imageFile;
 
     public ClienteController() {
     }
@@ -78,6 +93,13 @@ public class ClienteController implements Serializable {
         return cliente;
     }
 
+    public Part getImageFile() {
+        return imageFile;
+    }
+
+    public void setImageFile(Part imageFile) {
+        this.imageFile = imageFile;
+    }
     //ACTIONS for visualiza, crea, edit and borra views
     /**
      * Get client from id param
@@ -117,6 +139,7 @@ public class ClienteController implements Serializable {
      */
     public String borra() {
         clienteDAO.borra(cliente.getId());
+        //TODO Borrar imagen del cliente
         fc.addMessage(null, new FacesMessage("Cliente borrado correctamente"));
         return "listado";
     }
@@ -154,7 +177,39 @@ public class ClienteController implements Serializable {
 
         cancelEditRow();
     }
-    
+
+    /** Copy new customer image to external folder
+     */
+    public String cambiaImagen () {
+        if (imageFile==null) {
+            fc.addMessage("", new FacesMessage(FacesMessage.SEVERITY_WARN,"Debe seleccionarse una imagen",""));
+            return "";
+        }
+        String newFileName = imageFile.getSubmittedFileName();
+
+        //Move temp file to customer images folder
+        try (InputStream input = imageFile.getInputStream()) {
+            String contentType = imageFile.getContentType();
+
+            // Check if file is actually an image (avoid download of other files by hackers!).
+            // For all content types, see: http://www.w3schools.com/media/media_mimeref.asp
+            if (contentType == null || !contentType.startsWith("image")) {
+                logger.warning("Discarded invalid image file");
+                throw new RuntimeException("Not a valid Image file");
+            }
+            //TODO Adapt image extensions depending on image Mime type
+            Path destFile=Path.of(appConfig.getProperty("appFilesFolder")+appConfig.getProperty("customer.images"),
+                    cliente.getId().toString()+".png" );  //Destination filename: primarykey.png
+            Files.copy(input, destFile, StandardCopyOption.REPLACE_EXISTING);
+            fc.addMessage("", new FacesMessage(FacesMessage.SEVERITY_INFO,"Imagen enviada correctamente",""));
+            logger.log(Level.INFO, "Uploaded file: {0}", newFileName);
+        } catch (IOException | RuntimeException e) {
+            fc.addMessage("", new FacesMessage(FacesMessage.SEVERITY_WARN,"No se ha podido modificar la imagen",""));
+        }
+
+        return "";
+    }
+
     //VALIDADORES Faces. Using Bean Validation instead
 //    public void validaNombre(FacesContext context, UIComponent inputNombre,
 //                                Object value) {

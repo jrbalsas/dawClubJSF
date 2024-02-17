@@ -13,18 +13,21 @@
 
     <!-- IMPLEMENTATION -->
     <cc:implementation>
-        <ul class="panel-body list-group">
+        <div class="row">
+            <h:graphicImage styleClass="col-md-4 img-fluid rounded"   value="/clienteimg/#{cc.attrs.value.id}" />
+            <ul class="col-md-8 panel-body list-group">
 
-            <li class="list-group-item"><strong>ID:</strong> #{cc.attrs.value.id}</li>
-            <li class="list-group-item"><strong>Nombre:</strong> #{cc.attrs.value.nombre}</li>
-            <li class="list-group-item"><strong>DNI:</strong> #{cc.attrs.value.dni}</li>
-            <li class="list-group-item"><strong>Socio:</strong> #{cc.attrs.value.socio?"Sí":"No"}</li>
-            <li class="list-group-item"><strong>Fecha nacimiento: </strong>
-                <h:outputText value="#{cc.attrs.value.fechaNacimiento}">
-                    <f:convertDateTime type="localDate" dateStyle="long" />
-                </h:outputText>
-            </li>
-        </ul>
+                <li class="list-group-item"><strong>ID:</strong> #{cc.attrs.value.id}</li>
+                <li class="list-group-item"><strong>Nombre:</strong> #{cc.attrs.value.nombre}</li>
+                <li class="list-group-item"><strong>DNI:</strong> #{cc.attrs.value.dni}</li>
+                <li class="list-group-item"><strong>Socio:</strong> #{cc.attrs.value.socio?"Sí":"No"}</li>
+                <li class="list-group-item"><strong>Fecha nacimiento: </strong>
+                    <h:outputText value="#{cc.attrs.value.fechaNacimiento}">
+                        <f:convertDateTime type="localDate" dateStyle="long" />
+                    </h:outputText>
+                </li>
+            </ul>
+        </div>
 
     </cc:implementation>
 </html>

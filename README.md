@@ -19,9 +19,13 @@ Features:
 - JEE Security API options :
     - IdentityStores: Embedded, Database, Custom
     - HttpAuthenticationMethods: Basic, Form, CustomJSF Form/controller
+- Upload entity images on external folder
+- Specialized Servlet for downloading entity external images
+- Read config parameters from ``application.properties`` file
 
-## Requeriments
+## Requirements
 
+- JDK 17+
 - Jakarta EE 10 Application Server, e.g. Payara
 - WildFly 20+:
   - [Requires](https://docs.wildfly.org/27/WildFly_Elytron_Security.html#Elytron_and_Java_Authentication_SPI_for_Containers-JASPI) 
@@ -31,6 +35,7 @@ changes in https://github.com/wildfly/quickstart/tree/main/ee-security#configure
 
 ## Usage
 - Compile and deploy in a JEE Application Server
+- By default, uploaded user images are placed on ``<<User_home_dir>>/club`` folder. Change it on ``application.properties`` file 
 
 ### DB Access:
 1. Configure JEE Datasource in web.xml
