@@ -123,5 +123,16 @@ public class ClienteDAOJPA implements ClienteDAO, Serializable {
         }
         return borrado;
     }
-
+    @Override
+    public boolean cambiaImagen(Integer idCliente, String newImageFileName) {
+        boolean guardado = false;
+        try {
+            Cliente c = em.find(Cliente.class, idCliente);
+            c.setImageFileName(newImageFileName);
+            guardado = true;
+        } catch (Exception ex) {
+            logger.log(Level.SEVERE, ex.getMessage(), ex);
+        }
+        return guardado;
+    }
 }

@@ -2,6 +2,8 @@ package com.daw.club;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.context.Initialized;
+import jakarta.enterprise.event.Observes;
 import jakarta.enterprise.inject.Default;
 import jakarta.faces.annotation.FacesConfig;
 import jakarta.inject.Named;
@@ -11,6 +13,7 @@ import jakarta.security.enterprise.authentication.mechanism.http.FormAuthenticat
 import jakarta.security.enterprise.authentication.mechanism.http.LoginToContinue;
 import jakarta.security.enterprise.identitystore.DatabaseIdentityStoreDefinition;
 import jakarta.security.enterprise.identitystore.Pbkdf2PasswordHash;
+import jakarta.servlet.ServletContext;
 import org.glassfish.soteria.identitystores.annotation.Credentials;
 import org.glassfish.soteria.identitystores.annotation.EmbeddedIdentityStoreDefinition;
 
@@ -86,7 +89,7 @@ public class AppConfig {
 
     @PostConstruct
     public void init() {
-        //Load application properties file
+        // Load application properties file from main/resources
         try (InputStream inputStream = this.getClass().getResourceAsStream("/application.properties")) {
             appProperties = new Properties();
             appProperties.load(inputStream);
@@ -94,14 +97,14 @@ public class AppConfig {
             logger.severe("No se ha podido abrir el fichero de configuración application.properties");
         }
 
-        if (!appProperties.containsKey("appFilesFolder")) {
-            //Set default folder if it is not set on application.properties
-            appProperties.setProperty("appFilesFolder", System.getProperty("user.home") + "/club" );
+        if (!appProperties.containsKey("app.data")) {
+            //Set default add data folder if it is not set on application.properties
+            appProperties.setProperty("app.data", System.getProperty("user.home") + "/webapp-data" );
         }
-        //Create external folders
-        initFolder(getProperty("appFilesFolder")); //Create root folder for external files
-        logger.info("Application external files path: " + appProperties.getProperty("appFilesFolder"));
-        initFolder(getProperty("appFilesFolder")+getProperty("customer.images"));  //Create subfolder for customer images
+        //Create app data subfolders
+        initFolder(getProperty("app.data")); //Create root folder for external files
+        logger.info("Application external files path: " + appProperties.getProperty("app.data"));
+        initFolder(getProperty("app.data")+getProperty("customer.images"));  //Create subfolder for customer images
         logger.info("Customer images subfolder: " + appProperties.getProperty("customer.images"));
 
     }

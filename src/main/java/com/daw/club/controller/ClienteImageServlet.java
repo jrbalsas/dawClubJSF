@@ -2,7 +2,6 @@ package com.daw.club.controller;
 
 import com.daw.club.AppConfig;
 import jakarta.inject.Inject;
-import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -18,7 +17,7 @@ import java.util.logging.Logger;
  * The Image servlet for serving from absolute path.
  * @author BalusC
  * @link http://balusc.blogspot.com/2007/04/imageservlet.html
- * @note access url /clienteimg/<primary_key> e.g. /clienteimg/1
+ * @note access url /clienteimg/file.jpg
  */
 @WebServlet("/clienteimg/*")
 public class ClienteImageServlet extends HttpServlet {
@@ -38,7 +37,7 @@ public class ClienteImageServlet extends HttpServlet {
         // Define base path somehow. Samples:
         //this.imagePath = "/tmp/images";  //Server absolute path, e.g. c:/tmp/images (windows)
         //this.imagePath = System.getProperty("user.home")+"/images";  //User home relative path /home/username/images
-        this.imagesPath=appConfig.getProperty("appFilesFolder")+appConfig.getProperty("customer.images"); //sub-folder in user home, e.g. /home/username/webimages
+        this.imagesPath=appConfig.getProperty("app.data")+appConfig.getProperty("customer.images");
     }
 
     // Actions ------------------------------------------------------------------------------------
@@ -46,13 +45,10 @@ public class ClienteImageServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-        // Get client id
-        String requestedImage = request.getPathInfo().substring(1);
+        // Get image file name from url, i.r. /clienteimg/imagefile.jpg
+        String requestedImage = request.getPathInfo();
 
-        if (requestedImage.matches("^\\d+$")) {
-            //get image name, e.g. from database DB, fixed extension, ...
-            requestedImage += ".png";
-        } else {
+        if (requestedImage==null) {
             // Do your thing if the image is not supplied to the request URI.
             // Throw an exception, or send 404, or show default/warning image, or just ignore it.
             response.sendError(HttpServletResponse.SC_NOT_FOUND); // 404.
@@ -66,14 +62,9 @@ public class ClienteImageServlet extends HttpServlet {
         if (!imageFile.exists()) {
             // Do your thing if the file appears to be non-existing.
             // Throw an exception, or send 404, or show default/warning image, or just ignore it.
-
-            //response.sendError(HttpServletResponse.SC_NOT_FOUND); // 404.
-            //log.warning(String.format("File %s not found", image.getName()));
-            //return;
-
-            //If file not exists, send default image (webapp/resources/images/cliente.png)
-
-            imageFile = new File(getServletContext().getRealPath( appConfig.getProperty("customer.defaultimage") ) );
+            response.sendError(HttpServletResponse.SC_NOT_FOUND); // 404.
+            log.warning(String.format("File %s not found", imageFile.getName()));
+            return;
         }
 
         // Get content type by filename.
@@ -88,7 +79,7 @@ public class ClienteImageServlet extends HttpServlet {
             log.warning(String.format("File %s is not an image", imageFile.getName()));
             return;
         }
-        log.info(String.format("GET %s file", imageFile.getName()));
+        log.info(String.format("GET %s image", imageFile.getName()));
         // Init servlet response.
         response.reset();
         response.setContentType(contentType);

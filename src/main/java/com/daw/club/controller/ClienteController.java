@@ -13,6 +13,7 @@ import java.io.Serial;
 import java.io.Serializable;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.security.Principal;
 import java.util.List;
@@ -52,6 +53,8 @@ public class ClienteController implements Serializable {
 
     private Principal principal; //Current authenticated user
 
+    private String rutaImagenes;
+
     //View-Model
     private Cliente cliente;
     private Part imageFile;
@@ -64,8 +67,11 @@ public class ClienteController implements Serializable {
         //init  model-view
         cliente = new Cliente();
 
-        String currentUserName="Anónimo";
+        //Customer images path in filesystem
+        rutaImagenes = appConfig.getProperty("app.data")+appConfig.getProperty("customer.images");
 
+        //log authenticated user info
+        String currentUserName="Anónimo";
         principal=sc.getCallerPrincipal(); //Get authenticated user info if available
 
         if (principal!=null) {
@@ -100,6 +106,7 @@ public class ClienteController implements Serializable {
     public void setImageFile(Part imageFile) {
         this.imageFile = imageFile;
     }
+
     //ACTIONS for visualiza, crea, edit and borra views
     /**
      * Get client from id param
@@ -147,6 +154,7 @@ public class ClienteController implements Serializable {
     //ACTIONS for listado.xhtml view
     public String borra(Cliente cliente) {
         clienteDAO.borra(cliente.getId());
+        //TODO Borrar imagen del cliente
         fc.addMessage(null, new FacesMessage("Cliente borrado correctamente"));
         return "listado";
     }
@@ -178,36 +186,51 @@ public class ClienteController implements Serializable {
         cancelEditRow();
     }
 
-    /** Copy new customer image to external folder
+    /** Change Customer Image file
      */
     public String cambiaImagen () {
+
+        //Image not received
         if (imageFile==null) {
             fc.addMessage("", new FacesMessage(FacesMessage.SEVERITY_WARN,"Debe seleccionarse una imagen",""));
             return "";
         }
-        String newFileName = imageFile.getSubmittedFileName();
 
         //Move temp file to customer images folder
         try (InputStream input = imageFile.getInputStream()) {
-            String contentType = imageFile.getContentType();
 
-            // Check if file is actually an image (avoid download of other files by hackers!).
-            // For all content types, see: http://www.w3schools.com/media/media_mimeref.asp
+            String contentType = imageFile.getContentType();
+            // Check if file is actually an image (avoid upload of other files by hackers!).
+            // For all content types, see: https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types#image_types
             if (contentType == null || !contentType.startsWith("image")) {
-                logger.warning("Discarded invalid image file");
                 throw new RuntimeException("Not a valid Image file");
             }
-            //TODO Adapt image extensions depending on image Mime type
-            Path destFile=Path.of(appConfig.getProperty("appFilesFolder")+appConfig.getProperty("customer.images"),
-                    cliente.getId().toString()+".png" );  //Destination filename: primarykey.png
+
+            //Rename file with primary key, e.g. 1.png
+            String newFileName=cliente.getId().toString()+"."+contentType.substring(6,9);
+
+            //Remove old image file
+            if (cliente.getImageFileName()!=null) {
+                Path path = Path.of(rutaImagenes, cliente.getImageFileName());
+                Files.deleteIfExists(path);
+            }
+
+            //Copy new file
+            Path destFile=Path.of(rutaImagenes,newFileName );
             Files.copy(input, destFile, StandardCopyOption.REPLACE_EXISTING);
+
+            //update View-Model & Model
+            cliente.setImageFileName(newFileName);
+            clienteDAO.cambiaImagen( cliente.getId(), newFileName );
+
             fc.addMessage("", new FacesMessage(FacesMessage.SEVERITY_INFO,"Imagen enviada correctamente",""));
             logger.log(Level.INFO, "Uploaded file: {0}", newFileName);
         } catch (IOException | RuntimeException e) {
             fc.addMessage("", new FacesMessage(FacesMessage.SEVERITY_WARN,"No se ha podido modificar la imagen",""));
+            logger.warning("Error updating customer image file: "+e.getMessage() );
         }
 
-        return "";
+        return "visualiza?faces-redirect=true&id=" + cliente.getId();
     }
 
     //VALIDADORES Faces. Using Bean Validation instead

@@ -26,6 +26,8 @@ public class Cliente implements Serializable {
 
     private LocalDate fechaNacimiento;
 
+    private String imageFileName;
+
     public Cliente() {
         id = 0;
         nombre = "Desconocido";
@@ -48,6 +50,7 @@ public class Cliente implements Serializable {
         this.dni = c.dni;
         this.socio = c.socio;
         this.fechaNacimiento = c.fechaNacimiento;
+        this.imageFileName=c.imageFileName;
     }
 
     /**
@@ -128,6 +131,14 @@ public class Cliente implements Serializable {
         int hash = 7;
         hash = 11 * hash + this.id;
         return hash;
+    }
+
+    public String getImageFileName() {
+        return imageFileName;
+    }
+
+    public void setImageFileName(String imageFileName) {
+        this.imageFileName = imageFileName;
     }
 
     @Override

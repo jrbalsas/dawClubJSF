@@ -7,10 +7,10 @@
        Change "dir" attribute with an absolute path in server filesystem for shared folders, e.g. /tmp/ or c:/temp/
        "from" attribute is the subfolder in dir folder which is shared relative to app URL Path, e.g. dawFileUpload/images
   -->
-  <!--
-    <property name="alternatedocroot_1" value="from=/customerimg/* dir=/${user.home}/club" />
 
-    <property name="alternatedocroot_2" value="from=/movies/* dir=/${user.home}/club" />
+    <property name="alternatedocroot_1" value="from=/customerimg/* dir=/${user.home}/webapp-data" />
+  <!--
+    <property name="alternatedocroot_2" value="from=/stuffimg/* dir=/${user.home}/webapp-data" />
   -->
 
 </payara-web-app>

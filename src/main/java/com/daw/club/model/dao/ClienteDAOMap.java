@@ -85,4 +85,14 @@ public class ClienteDAOMap implements ClienteDAO, Serializable{
         return localizado;
     }
 
+    @Override
+    public boolean cambiaImagen(Integer idCliente, String newImageFileName) {
+        Cliente c = clientes.get(idCliente);
+        if (c != null) {
+            c.setImageFileName(newImageFileName);
+            clientes.replace(c.getId(),c);
+        }
+        return c!=null;
+
+    }
 }

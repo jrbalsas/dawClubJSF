@@ -22,7 +22,12 @@
 
             <div class="col-md-4">
                 <h:form id="formPhoto" enctype="multipart/form-data"  >
-                    <h:graphicImage id="customerImg" styleClass="img-fluid rounded"   value="/clienteimg/#{clienteCtrl.cliente.id}" />
+                    <h:graphicImage styleClass="img-fluid rounded"
+                                    rendered="#{empty(clienteCtrl.cliente.imageFileName)}"
+                                    library="images" name="cliente.png" />
+                    <h:graphicImage styleClass="img-fluid rounded"
+                                    rendered="#{not empty(clienteCtrl.cliente.imageFileName)}"
+                                    value="#{app.getProperty('customer.images')}/#{clienteCtrl.cliente.imageFileName}" />
                     <div class="btn-group-sm">
                     <h:inputFile styleClass="form-control btn btn-outline-primary btn-sm" value="#{clienteCtrl.imageFile}"  >
                     </h:inputFile>
