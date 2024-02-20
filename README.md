@@ -1,7 +1,7 @@
-dawClub using JSF [![Build Status](https://travis-ci.com/jrbalsas/dawClubJSF.svg?branch=master)](https://travis-ci.com/jrbalsas/dawClubJSF)
+dawClub using Jakarta Faces [![Build Status](https://travis-ci.com/jrbalsas/dawClubJSF.svg?branch=master)](https://travis-ci.com/jrbalsas/dawClubJSF)
 ==========
 
-Sample Maven project with JSF CRUD Web App
+Sample Maven project with Jakarta Faces CRUD Web App
 
 Features:
 -------------
@@ -20,13 +20,13 @@ Features:
     - IdentityStores: Embedded, Database, Custom
     - HttpAuthenticationMethods: Basic, Form, CustomJSF Form/controller
 - Upload entity images on external folder
-- Specialized Servlet for downloading entity external images
-- Read config parameters from ``application.properties`` file
+- Specialized Servlet for downloading entity external images ``ClienteImageServlet``
+- Read config parameters from ``main/resources/application.properties`` file
 
 ## Requirements
 
 - JDK 17+
-- Jakarta EE 10 Application Server, e.g. Payara
+- Jakarta EE 10 Application Server, e.g. Payara 6+
 - WildFly 20+:
   - [Requires](https://docs.wildfly.org/27/WildFly_Elytron_Security.html#Elytron_and_Java_Authentication_SPI_for_Containers-JASPI) 
 disabling integrated JASPI to support Jakarta EE Security API. There is a configuration script to apply these 
@@ -35,7 +35,7 @@ changes in https://github.com/wildfly/quickstart/tree/main/ee-security#configure
 
 ## Usage
 - Compile and deploy in a JEE Application Server
-- By default, uploaded user images are placed on ``<<User_home_dir>>/club`` folder. Change it on ``application.properties`` file 
+- By default, uploaded user images are placed on ``<<User_home_dir>>/webapp-data/customerimg`` folder. Change it on ``application.properties`` file 
 
 ### DB Access:
 1. Configure JEE Datasource in web.xml

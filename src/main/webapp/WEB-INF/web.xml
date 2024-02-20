@@ -62,6 +62,7 @@
         <web-resource-collection>
             <web-resource-name>cliente</web-resource-name>
             <url-pattern>/cliente/*</url-pattern>
+            <url-pattern>/clienteimg/*</url-pattern>
         </web-resource-collection>
 <!--
            <auth-constraint>
