@@ -1,7 +1,7 @@
-dawClub using JSF [![Build Status](https://travis-ci.com/jrbalsas/dawClubJSF.svg?branch=master)](https://travis-ci.com/jrbalsas/dawClubJSF)
+dawClub using Jakarta Faces [![Build Status](https://travis-ci.com/jrbalsas/dawClubJSF.svg?branch=master)](https://travis-ci.com/jrbalsas/dawClubJSF)
 ==========
 
-Sample Maven project with JSF CRUD Web App
+Sample Maven project with Jakarta Faces CRUD Web App
 
 Features:
 -------------
@@ -20,9 +20,10 @@ Features:
     - IdentityStores: Embedded, Database, Custom
     - HttpAuthenticationMethods: Basic, Form, CustomJSF Form/controller
 
-## Requeriments
+## Requirements
 
-- Jakarta EE 10 Application Server, e.g. Payara
+- JDK 17+
+- Jakarta EE 10 Application Server, e.g. Payara 6+
 - WildFly 20+:
   - [Requires](https://docs.wildfly.org/27/WildFly_Elytron_Security.html#Elytron_and_Java_Authentication_SPI_for_Containers-JASPI) 
 disabling integrated JASPI to support Jakarta EE Security API. There is a configuration script to apply these 
