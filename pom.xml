@@ -55,9 +55,9 @@
             <plugin>
                 <groupId>fish.payara.maven.plugins</groupId>
                 <artifactId>payara-micro-maven-plugin</artifactId>
-                <version>1.4.0</version>
+                <version>2.0</version>
                 <configuration>
-                    <payaraVersion>6.2023.1</payaraVersion>
+                    <payaraVersion>6.2024.2</payaraVersion>
                     <deployWar>true</deployWar>
                     <contextRoot>/</contextRoot>
                 </configuration>
@@ -65,7 +65,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
-                <version>3.3.2</version>
+                <version>3.4.0</version>
             </plugin>
         </plugins>
     </build>
