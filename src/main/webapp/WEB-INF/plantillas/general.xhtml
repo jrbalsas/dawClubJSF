@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:ui="jakarta.faces.facelets"
-      xmlns:h="jakarta.faces.html"
-      xmlns:c="jakarta.tags.core">
+      xmlns:h="jakarta.faces.html">
 
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -29,11 +28,11 @@
                 <ul class="nav nav-pills flex-column">                                    
                     <!--Sample Personalized Logout button-->
                     <!--Enable access control (web.xml) to show it after login-->
-                    <c:if test="#{not empty request.userPrincipal}">
+                    <h:panelGroup rendered="#{not empty request.userPrincipal}">
                         <!-- Custom ClubPrincipal properties can be used, e.g.: request.userPrincipal.usuario.nombre -->
                         <li><h:link styleClass="nav-item btn btn-warning" outcome="/logout">Logout #{request.userPrincipal.name}</h:link>
                         </li>
-                    </c:if>
+                    </h:panelGroup>
                     <li class="nav-item">  <h:link outcome="/index" value="Inicio" class="nav-link"/></li>
                 </ul>                
 
