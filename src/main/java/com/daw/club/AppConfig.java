@@ -1,7 +1,10 @@
 package com.daw.club;
 
+import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.inject.Default;
 import jakarta.faces.annotation.FacesConfig;
+import jakarta.inject.Named;
 import jakarta.security.enterprise.authentication.mechanism.http.BasicAuthenticationMechanismDefinition;
 import jakarta.security.enterprise.authentication.mechanism.http.CustomFormAuthenticationMechanismDefinition;
 import jakarta.security.enterprise.authentication.mechanism.http.FormAuthenticationMechanismDefinition;
@@ -20,8 +23,8 @@ import org.glassfish.soteria.identitystores.annotation.EmbeddedIdentityStoreDefi
 */
 /* Soteria RI in memory IdentityStore (org.glassfish.soteria dependency needed in pom.xml */
 @EmbeddedIdentityStoreDefinition({
-    @Credentials(callerName = "admin", password = "secret1", groups = {"ADMINISTRADORES"}),
-    @Credentials(callerName = "user", password = "secret2", groups = {"USUARIOS"})
+        @Credentials(callerName = "admin", password = "secret1", groups = {"ADMINISTRADORES"}),
+        @Credentials(callerName = "user", password = "secret2", groups = {"USUARIOS"})
 })
 /* JEE Security Database IdentityStore implementation*/
 //@DatabaseIdentityStoreDefinition(
@@ -59,8 +62,11 @@ import org.glassfish.soteria.identitystores.annotation.EmbeddedIdentityStoreDefi
 //                useForwardToLogin = false
 //        )
 //)
-@ApplicationScoped
+
 @FacesConfig //Required for using JSF 2.3 features
+@Named("app")
+@Default
+@ApplicationScoped
 public class AppConfig {
     
 }

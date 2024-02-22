@@ -1,10 +1,12 @@
 package com.daw.club.controller;
 
+import com.daw.club.AppConfig;
 import com.daw.club.model.Cliente;
 import com.daw.club.model.ClubPrincipal;
 import com.daw.club.model.dao.ClienteDAO;
 import com.daw.club.qualifiers.DAOJpa;
 import com.daw.club.qualifiers.DAOMap;
+import java.io.Serial;
 import java.io.Serializable;
 import java.security.Principal;
 import java.util.List;
@@ -21,6 +23,7 @@ import jakarta.security.enterprise.SecurityContext;
 @ViewScoped
 public class ClienteController implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = 1L;
 
     private final Logger logger = Logger.getLogger(ClienteController.class.getName());
@@ -36,6 +39,9 @@ public class ClienteController implements Serializable {
     @Inject
     SecurityContext sc; //Information about authenticated user
 
+    @Inject
+    AppConfig appConfig;
+
     private Principal principal; //Current authenticated user
 
     //View-Model
@@ -49,8 +55,8 @@ public class ClienteController implements Serializable {
         //init  model-view
         cliente = new Cliente();
 
+        //log authenticated user info
         String currentUserName="Anónimo";
-
         principal=sc.getCallerPrincipal(); //Get authenticated user info if available
 
         if (principal!=null) {
