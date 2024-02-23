@@ -1,14 +1,14 @@
 package com.daw.club.model;
 
-import java.io.Serializable;
-import java.time.LocalDate;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
+
+import java.io.Serializable;
+import java.time.LocalDate;
 
 @Entity()       //JPA annotations
 //@Table(name="Clientes")
@@ -25,6 +25,8 @@ public class Cliente implements Serializable {
     private boolean socio;
 
     private LocalDate fechaNacimiento;
+
+    private String claveCifrada;
 
     public Cliente() {
         id = 0;
@@ -48,6 +50,7 @@ public class Cliente implements Serializable {
         this.dni = c.dni;
         this.socio = c.socio;
         this.fechaNacimiento = c.fechaNacimiento;
+        this.claveCifrada = c.claveCifrada;
     }
 
     /**
@@ -128,6 +131,14 @@ public class Cliente implements Serializable {
         int hash = 7;
         hash = 11 * hash + this.id;
         return hash;
+    }
+
+    public String getClaveCifrada() {
+        return claveCifrada;
+    }
+
+    public void setClaveCifrada(String claveCifrada) {
+        this.claveCifrada = claveCifrada;
     }
 
     @Override

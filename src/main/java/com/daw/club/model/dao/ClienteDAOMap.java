@@ -2,12 +2,13 @@ package com.daw.club.model.dao;
 
 import com.daw.club.model.Cliente;
 import com.daw.club.qualifiers.DAOMap;
+import jakarta.enterprise.context.ApplicationScoped;
+
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-import jakarta.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped      //Elegible for Dependency Injection
 @DAOMap
@@ -22,6 +23,12 @@ public class ClienteDAOMap implements ClienteDAO, Serializable{
         clientes.put(idCliente, new Cliente(idCliente++, "Paco López", "11111111-A", false));
         clientes.put(idCliente, new Cliente(idCliente++, "María Jiménez", "22222222-B", true));
         clientes.put(idCliente, new Cliente(idCliente++, "Carlos García", "33333333-C", true));
+
+        //set default ciphered password to sample customers: secreto
+        String nuevaClave= "PBKDF2WithHmacSHA512:3072:kN6Xy8mLfmpS15I2QQ6oww2GV8ahZGZMKi8jq8CXge7mRQtItsqXl7EJ/JSEX4I/VofdPpWqLj20mgkkk4+hZw==:phiHq1GmgmNMFusGuCsarWtbiiKKkuAs+PEla7mlrmU=";
+        for (int id=1; id<idCliente; id++) {
+            clientes.get(id).setClaveCifrada(nuevaClave);
+        }
     }
     
     @Override
