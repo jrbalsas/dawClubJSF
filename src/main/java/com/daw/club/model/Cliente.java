@@ -20,7 +20,8 @@ public class Cliente implements Serializable {
 
     @Size(min = 4, max = 25, message = "La longitud ${validatedValue} debe estar entre {min} y {max} caracteres")
     private String nombre;
-    @Pattern(regexp = "\\d{7,8}(-?[a-zA-Z])?", message = "{cliente.dni.formato}")
+    @Pattern(regexp = "\\d{8}-?[a-zA-Z]", message = "{cliente.dni.formato}")
+    //@Dni(message = "{cliente.dni.formato}")  //Custom validator
     private String dni;
     private boolean socio;
 

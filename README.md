@@ -9,6 +9,7 @@ Features:
 - Sample DAOJPA implementation
 - Uses CDI annotations with qualifiers for DAO selection in Controller
 - Bean Validation with customized messages on ValidationMessages.properties
+- Custom BeanValidation Implementation: ``@Dni``
 - Simple Entity CRUD views
 - DataTable row editing view
 - Sample view modification using AJAX
