@@ -30,7 +30,12 @@
                     <!--Enable access control (web.xml) to show it after login-->
                     <h:panelGroup rendered="#{not empty request.userPrincipal}">
                         <!-- Custom ClubPrincipal properties can be used, e.g.: request.userPrincipal.usuario.nombre -->
-                        <li><h:link styleClass="nav-item btn btn-warning" outcome="/logout">Logout #{request.userPrincipal.name}</h:link>
+                        <li class="nav-item">
+                            <h:form styleClass="">
+                                <h:commandLink styleClass="nav-link active bg-warning text-dark"
+                                             action="#{clubLoginController.logout}"
+                                             value="Logout #{request.userPrincipal.name}"/>
+                            </h:form>
                         </li>
                     </h:panelGroup>
                     <li class="nav-item">  <h:link outcome="/index" value="Inicio" class="nav-link"/></li>
