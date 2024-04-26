@@ -19,6 +19,7 @@
 
     <dependencies>
 
+
         <!-- Bootstrap CSS Framework -->
         <dependency>
             <groupId>org.webjars</groupId>
@@ -45,7 +46,7 @@
             <artifactId>h2</artifactId>
             <version>2.1.214</version>
             <!-- Change to runtime if not provided by application server, e.g. WildFly-->
-            <scope>provided</scope>
+            <scope>runtime</scope>
         </dependency>
 
     </dependencies>
@@ -60,6 +61,20 @@
                     <payaraVersion>6.2024.2</payaraVersion>
                     <deployWar>true</deployWar>
                     <contextRoot>/</contextRoot>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>io.openliberty.tools</groupId>
+                <artifactId>liberty-maven-plugin</artifactId>
+                <version>3.3.4</version>
+                <configuration>
+                    <copyDependencies>
+                        <location>jdbc</location>
+                        <dependency>
+                            <groupId>com.h2database</groupId>
+                            <artifactId>h2</artifactId>
+                        </dependency>
+                    </copyDependencies>
                 </configuration>
             </plugin>
             <plugin>

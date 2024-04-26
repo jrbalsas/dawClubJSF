@@ -1,0 +1,16 @@
+<server description="Club server">
+    <featureManager>
+        <feature>webProfile-10.0</feature>
+    </featureManager>
+
+    <logging consoleLogLevel="INFO"/>
+
+    <library id="h2driver">
+        <fileset dir="jdbc" includes="h2*.jar"/>
+    </library>
+
+    <webApplication location="club.war" contextRoot="/" >
+        <classloader commonLibraryRef="h2driver"/>
+    </webApplication>
+
+</server>

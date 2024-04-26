@@ -10,7 +10,6 @@
         <param-value>Development</param-value>
         <!-- Other values: Production, SystemTest, UnitTest -->
     </context-param>
-
     <!-- Session configuration -->
     <session-config>
         <session-timeout>
@@ -38,15 +37,16 @@
     </servlet-mapping>
 -->
     <welcome-file-list>
-        <welcome-file>index.jsf</welcome-file>
+        <welcome-file>index.xhtml</welcome-file>
     </welcome-file-list>
 
     <!-- Creation of Datasource in Application Server -->
+
     <data-source>
-        <name>java:global/jdbc/gestClub</name>
+        <name>java:comp/env/jdbc/gestClub</name>
         <class-name>org.h2.jdbcx.JdbcDataSource</class-name>
         <url>jdbc:h2:~/h2db/dawclub;MODE=LEGACY;AUTO_SERVER=TRUE</url>
-<!--         <url>jdbc:h2:mem:dawclub;DB_CLOSE_DELAY=-1</url> -->
+<!--          <url>jdbc:h2:mem:dawclub;DB_CLOSE_DELAY=-1</url> -->
         <user>dawuser</user>
         <password>dawuser</password> 
         <initial-pool-size>2</initial-pool-size>
