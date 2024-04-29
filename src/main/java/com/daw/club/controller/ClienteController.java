@@ -5,12 +5,6 @@ import com.daw.club.model.Cliente;
 import com.daw.club.model.ClubPrincipal;
 import com.daw.club.model.dao.ClienteDAO;
 import com.daw.club.qualifiers.DAOJpa;
-import com.daw.club.qualifiers.DAOMap;
-import java.io.Serial;
-import java.io.Serializable;
-import java.security.Principal;
-import java.util.List;
-import java.util.logging.Logger;
 import jakarta.annotation.PostConstruct;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
@@ -18,6 +12,12 @@ import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import jakarta.security.enterprise.SecurityContext;
+
+import java.io.Serial;
+import java.io.Serializable;
+import java.security.Principal;
+import java.util.List;
+import java.util.logging.Logger;
 
 @Named(value = "clienteCtrl")
 @ViewScoped
@@ -29,8 +29,8 @@ public class ClienteController implements Serializable {
     private final Logger logger = Logger.getLogger(ClienteController.class.getName());
 
     //Business logic
-    //@Inject @DAOJpa   //JPA DAO implementation
-    @Inject @DAOMap     //Inject DAO Map testing implementation
+    @Inject @DAOJpa   //JPA DAO implementation
+    //@Inject @DAOMap     //Inject DAO Map testing implementation
     private ClienteDAO clienteDAO;
 
     @Inject

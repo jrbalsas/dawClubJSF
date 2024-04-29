@@ -1,6 +1,7 @@
 <server description="Club server">
     <featureManager>
         <feature>webProfile-10.0</feature>
+        <feature>data-1.0</feature>
     </featureManager>
 
     <logging consoleLogLevel="INFO"/>

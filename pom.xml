@@ -68,6 +68,12 @@
                 <artifactId>liberty-maven-plugin</artifactId>
                 <version>3.3.4</version>
                 <configuration>
+                    <runtimeArtifact>
+                        <groupId>io.openliberty.beta</groupId>
+                        <artifactId>openliberty-runtime</artifactId>
+                        <version>24.0.0.4-beta</version>
+                        <type>zip</type>
+                    </runtimeArtifact>
                     <copyDependencies>
                         <location>jdbc</location>
                         <dependency>
