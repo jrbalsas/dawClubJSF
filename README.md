@@ -36,11 +36,13 @@ changes in https://github.com/wildfly/quickstart/tree/main/ee-security#configure
 
 ### DB Access:
 1. Configure JEE Datasource in web.xml
-2. resources/META-INF/sql/schema.sql can be used to create tables not manated by JPA
-3. resources/META-INF/sql/sampledata.sql used to insert sample data into database
-4. Select Map or JPA DAOs implementation in controller
+2. Select Map or JPA DAOs implementation in controller, AppConfig and ClubIdentityStore classes
+3. Create sample data on AppConfig class
+4. (optional) resources/META-INF/sql/schema.sql can be used to create tables not managed by JPA
+5. (optional) resources/META-INF/sql/sampledata.sql used to insert sample data into JPA managed tables
 
 ### Access control:
 1. Uncomment access-restriction section in access control rules (web.xml)
-2. Uncomment required IdentityStore/s in AppConfig class. Custom ClubIdentityStore available by default
-3. Uncomment required HttpAuthenticationMechanism in AppConfig class. Standard Form by default
+2. Uncomment required HttpAuthenticationMechanism in AppConfig class. Standard Form by default
+3. Uncomment preferred IdentityStore/s in AppConfig class if required.
+4. Custom ClubIdentityStore available by default. Select Map or JPA DAOs implementation to access user credentials.

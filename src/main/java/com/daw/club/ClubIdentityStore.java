@@ -32,6 +32,7 @@ public class ClubIdentityStore implements IdentityStore {
     private ClubAuthService authService;
 
     @Inject @DAOMap
+    //@Inject @DAOJpa
     private ClienteDAO clientesDAO;
 
     public ClubIdentityStore() {

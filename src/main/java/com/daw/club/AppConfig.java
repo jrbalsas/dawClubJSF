@@ -1,18 +1,21 @@
 package com.daw.club;
 
-import jakarta.annotation.PostConstruct;
+import com.daw.club.model.Cliente;
+import com.daw.club.model.dao.ClienteDAO;
+import com.daw.club.qualifiers.DAOMap;
 import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.event.Observes;
+import jakarta.enterprise.event.Startup;
 import jakarta.enterprise.inject.Default;
 import jakarta.faces.annotation.FacesConfig;
+import jakarta.inject.Inject;
 import jakarta.inject.Named;
-import jakarta.security.enterprise.authentication.mechanism.http.BasicAuthenticationMechanismDefinition;
-import jakarta.security.enterprise.authentication.mechanism.http.CustomFormAuthenticationMechanismDefinition;
 import jakarta.security.enterprise.authentication.mechanism.http.FormAuthenticationMechanismDefinition;
 import jakarta.security.enterprise.authentication.mechanism.http.LoginToContinue;
-import jakarta.security.enterprise.identitystore.DatabaseIdentityStoreDefinition;
-import jakarta.security.enterprise.identitystore.Pbkdf2PasswordHash;
 import org.glassfish.soteria.identitystores.annotation.Credentials;
 import org.glassfish.soteria.identitystores.annotation.EmbeddedIdentityStoreDefinition;
+
+import java.util.logging.Logger;
 
 /** Configure App and JEE Security API
  *
@@ -68,5 +71,25 @@ import org.glassfish.soteria.identitystores.annotation.EmbeddedIdentityStoreDefi
 @Default
 @ApplicationScoped
 public class AppConfig {
-    
+
+        @Inject @DAOMap
+        //@Inject @DAOJpa
+        ClienteDAO clienteDAO;
+
+        private Logger logger = Logger.getLogger(AppConfig.class.getName());
+
+        public void onStartup(@Observes Startup event) {
+                logger.info(">>>Inicializando aplicación");
+
+                createSampleData();
+        }
+
+        public void createSampleData() {
+                logger.info("Creando clientes de prueba");
+                //set default ciphered password to sample customers: secreto
+                String nuevaClave= "PBKDF2WithHmacSHA512:3072:kN6Xy8mLfmpS15I2QQ6oww2GV8ahZGZMKi8jq8CXge7mRQtItsqXl7EJ/JSEX4I/VofdPpWqLj20mgkkk4+hZw==:phiHq1GmgmNMFusGuCsarWtbiiKKkuAs+PEla7mlrmU=";
+                clienteDAO.crea( new Cliente(0, "Paco López", "11111111-A", false).setClaveCifrada(nuevaClave) );
+                clienteDAO.crea( new Cliente(0, "María Jiménez", "22222222-B", true).setClaveCifrada(nuevaClave) );
+                clienteDAO.crea( new Cliente(0, "Carlos García", "33333333-C", true).setClaveCifrada(nuevaClave) );
+        }
 }

@@ -138,8 +138,9 @@ public class Cliente implements Serializable {
         return claveCifrada;
     }
 
-    public void setClaveCifrada(String claveCifrada) {
+    public Cliente setClaveCifrada(String claveCifrada) {
         this.claveCifrada = claveCifrada;
+        return this;
     }
 
     @Override
