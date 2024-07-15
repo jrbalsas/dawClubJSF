@@ -3,24 +3,25 @@ package com.daw.club.model.dao;
 
 import com.daw.club.model.Cliente;
 import com.daw.club.qualifiers.DAOJpa;
+import jakarta.enterprise.context.Dependent;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.Query;
+import jakarta.persistence.TypedQuery;
+import jakarta.transaction.Transactional;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import jakarta.enterprise.context.RequestScoped;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.Query;
-import jakarta.persistence.PersistenceContext;
-import jakarta.persistence.TypedQuery;
-import jakarta.transaction.Transactional;
 
 /**
  *
  * @author jrbalsas
  */
-@RequestScoped  //Elegible for Dependency Injection
+@Dependent  //Elegible for Dependency Injection
 @DAOJpa
 @Transactional  //Application Server automatically manages EntityManager transaction in every method
 public class ClienteDAOJPA implements ClienteDAO, Serializable {
