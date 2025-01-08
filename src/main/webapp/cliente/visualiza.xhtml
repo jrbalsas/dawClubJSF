@@ -5,14 +5,16 @@
                 xmlns:h="jakarta.faces.html"
                 xmlns:daw="jakarta.faces.composite/dawcomp">
 
-    <ui:define name="metadata">
-        <f:metadata>
-            <f:viewParam name="id" value="#{clienteCtrl.cliente.id}"/>
-            <f:viewAction action="#{clienteCtrl.recupera()}" />
-        </f:metadata>               
-    </ui:define>
-
     <ui:define name="content">
+
+        <!-- Retrieve query-string parameters -->
+        <ui:define name="metadata">
+            <f:metadata>
+                <f:viewParam name="id" value="#{clienteCtrl.cliente.id}"/>
+                <f:viewAction action="#{clienteCtrl.recupera()}" />
+            </f:metadata>
+        </ui:define>
+
         <div class="panel panel-default">
 
             <h1 class="panel-heading">Visualiza Cliente</h1>
