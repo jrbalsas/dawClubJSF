@@ -10,8 +10,8 @@
     <name>dawClubJSF</name>
 
     <properties>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <failOnMissingWebXml>false</failOnMissingWebXml>
         <jakartaee>10.0.0</jakartaee>
@@ -57,7 +57,7 @@
                 <artifactId>payara-micro-maven-plugin</artifactId>
                 <version>2.0</version>
                 <configuration>
-                    <payaraVersion>6.2024.2</payaraVersion>
+                    <payaraVersion>6.2024.12</payaraVersion>
                     <deployWar>true</deployWar>
                     <contextRoot>/</contextRoot>
                 </configuration>
