@@ -60,7 +60,22 @@
                     <payaraVersion>6.2024.12</payaraVersion>
                     <deployWar>true</deployWar>
                     <contextRoot>/</contextRoot>
-                </configuration>
+                    <!-- Ajustes opcionales para optimizar los recursos utilizados por el servidor -->
+                    <commandLineOptions>
+                        <option>
+                            <key>--disablephonehome</key>
+                        </option>
+                        <option>
+                            <key>--noHazelcast</key>
+                        </option>
+                    </commandLineOptions>
+                    <javaCommandLineOptions>
+                        <option>
+                            <key>-Djava.security.egd</key>
+                            <value>file:/dev/./urandom</value>
+                        </option>
+                    </javaCommandLineOptions>
+               </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
