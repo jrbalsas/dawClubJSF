@@ -4,20 +4,19 @@ import com.daw.club.model.Cliente;
 import com.daw.club.model.ClubPrincipal;
 import com.daw.club.model.dao.ClienteDAO;
 import com.daw.club.qualifiers.DAOMap;
-
-import java.util.HashSet;
-import java.util.Set;
-import java.util.logging.Logger;
-
 import com.daw.club.services.ClubAuthService;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.security.enterprise.credential.UsernamePasswordCredential;
 import jakarta.security.enterprise.identitystore.CredentialValidationResult;
+import jakarta.security.enterprise.identitystore.IdentityStore;
+
+import java.util.HashSet;
+import java.util.Set;
+import java.util.logging.Logger;
+
 import static jakarta.security.enterprise.identitystore.CredentialValidationResult.INVALID_RESULT;
 import static java.util.Arrays.asList;
-
-import jakarta.security.enterprise.identitystore.IdentityStore;
 
 /**
  * Sample Customized JEE Security IdentityStore
@@ -33,6 +32,7 @@ public class ClubIdentityStore implements IdentityStore {
     private ClubAuthService authService;
 
     @Inject @DAOMap
+    //@Inject @DAOJpa
     private ClienteDAO clientesDAO;
 
     public ClubIdentityStore() {

@@ -1,19 +1,17 @@
 package com.daw.club;
 
-import jakarta.annotation.PostConstruct;
+import com.daw.club.model.Cliente;
+import com.daw.club.model.dao.ClienteDAO;
+import com.daw.club.qualifiers.DAOMap;
 import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.enterprise.context.Initialized;
 import jakarta.enterprise.event.Observes;
+import jakarta.enterprise.event.Startup;
 import jakarta.enterprise.inject.Default;
 import jakarta.faces.annotation.FacesConfig;
+import jakarta.inject.Inject;
 import jakarta.inject.Named;
-import jakarta.security.enterprise.authentication.mechanism.http.BasicAuthenticationMechanismDefinition;
-import jakarta.security.enterprise.authentication.mechanism.http.CustomFormAuthenticationMechanismDefinition;
 import jakarta.security.enterprise.authentication.mechanism.http.FormAuthenticationMechanismDefinition;
 import jakarta.security.enterprise.authentication.mechanism.http.LoginToContinue;
-import jakarta.security.enterprise.identitystore.DatabaseIdentityStoreDefinition;
-import jakarta.security.enterprise.identitystore.Pbkdf2PasswordHash;
-import jakarta.servlet.ServletContext;
 import org.glassfish.soteria.identitystores.annotation.Credentials;
 import org.glassfish.soteria.identitystores.annotation.EmbeddedIdentityStoreDefinition;
 
@@ -84,11 +82,22 @@ public class AppConfig {
     private Properties appProperties;
     private final Logger logger = Logger.getLogger(AppConfig.class.getName());
 
-    public AppConfig() {
+    @Inject @DAOMap
+    //@Inject @DAOJpa
+    private ClienteDAO clienteDAO;
+
+    public void onStartup(@Observes Startup event) {
+        logger.info(">>>Inicializando aplicación");
+
+        configureApp();
+        createSampleData();
     }
 
-    @PostConstruct
-    public void init() {
+    public String getProperty(String property) {
+        return appProperties.getProperty(property);
+    }
+
+    private void configureApp() {
         // Load application properties file from main/resources
         try (InputStream inputStream = this.getClass().getResourceAsStream("/application.properties")) {
             appProperties = new Properties();
@@ -99,18 +108,22 @@ public class AppConfig {
 
         if (!appProperties.containsKey("app.data")) {
             //Set default add data folder if it is not set on application.properties
-            appProperties.setProperty("app.data", System.getProperty("user.home") + "/webapp-data" );
+            appProperties.setProperty("app.data", System.getProperty("user.home") + "/webapp-data");
         }
         //Create app data subfolders
         initFolder(getProperty("app.data")); //Create root folder for external files
         logger.info("Application external files path: " + appProperties.getProperty("app.data"));
-        initFolder(getProperty("app.data")+getProperty("customer.images"));  //Create subfolder for customer images
+        initFolder(getProperty("app.data") + getProperty("customer.images"));  //Create subfolder for customer images
         logger.info("Customer images subfolder: " + appProperties.getProperty("customer.images"));
-
     }
 
-    public String getProperty(String property) {
-        return appProperties.getProperty(property);
+    public void createSampleData() {
+        logger.info("Creando clientes de prueba");
+        //set default ciphered password to sample customers: secreto
+        String nuevaClave = "PBKDF2WithHmacSHA512:3072:kN6Xy8mLfmpS15I2QQ6oww2GV8ahZGZMKi8jq8CXge7mRQtItsqXl7EJ/JSEX4I/VofdPpWqLj20mgkkk4+hZw==:phiHq1GmgmNMFusGuCsarWtbiiKKkuAs+PEla7mlrmU=";
+        clienteDAO.crea(new Cliente(0, "Paco López", "11111111-A", false).setClaveCifrada(nuevaClave));
+        clienteDAO.crea(new Cliente(0, "María Jiménez", "22222222-B", true).setClaveCifrada(nuevaClave));
+        clienteDAO.crea(new Cliente(0, "Carlos García", "33333333-C", true).setClaveCifrada(nuevaClave));
     }
 
     /** Create folder if not exists

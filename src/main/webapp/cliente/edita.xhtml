@@ -5,14 +5,14 @@
                 xmlns:f="jakarta.faces.core">
 
     <ui:define name="metadata">
+        <!-- Retrieve query-string parameters -->
         <f:metadata>
             <f:viewParam name="id" value="#{clienteCtrl.cliente.id}"/>
             <f:viewAction action="#{clienteCtrl.recupera()}" />
-        </f:metadata>               
+        </f:metadata>
     </ui:define>
 
     <ui:define name="content">
-
         <h1>Edita Cliente</h1>
 
         <h:messages warnClass="text-warning" infoClass="text-info" errorClass="text-danger"/>

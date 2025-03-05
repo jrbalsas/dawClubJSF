@@ -4,12 +4,12 @@
                 xmlns:ui="jakarta.faces.facelets"
                 xmlns:h="jakarta.faces.html"
                 xmlns:daw="jakarta.faces.composite/dawcomp">
-
     <ui:define name="metadata">
+        <!-- Retrieve query-string parameters -->
         <f:metadata>
             <f:viewParam name="id" value="#{clienteCtrl.cliente.id}"/>
             <f:viewAction action="#{clienteCtrl.recupera()}" />
-        </f:metadata>               
+        </f:metadata>
     </ui:define>
 
     <ui:define name="content">

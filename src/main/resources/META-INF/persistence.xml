@@ -14,11 +14,16 @@
             <!-- JPA table creation and populate for managed entities on starting app  -->
             <!--            <property name="javax.persistence.schema-generation.database.action" value="create"/>-->
             <property name="jakarta.persistence.schema-generation.database.action" value="drop-and-create"/>
+
+            <!-- Create sample data in database tables -->
+            <!--
             <property name="jakarta.persistence.sql-load-script-source" value="/META-INF/sql/sampledata.sql"/>
+            -->
             <!-- Specific db operations, e.g. create tables not managed by JPA -->
+            <!--
             <property name="jakarta.persistence.schema-generation.create-source" value="metadata-then-script"/>
             <property name="jakarta.persistence.schema-generation.create-script-source" value="/META-INF/sql/schema.sql"/>
-
+            -->
             <!-- EclipseLink specific properties e.g. debug level -->
             <property name="eclipselink.logging.level" value="INFO"/>
             <property name="eclipselink.logging.parameters" value="true"/>
