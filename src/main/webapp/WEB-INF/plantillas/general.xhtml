@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:ui="jakarta.faces.facelets"
-      xmlns:h="jakarta.faces.html">
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core">
+<f:view>
+    <!--Space for metadata tags on views with query strings parameters/actions (see visualiza.xhtml) -->
+    <ui:insert name="metadata"/>
 
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -12,11 +16,10 @@
         <h:outputScript library="webjars" name="jquery/3.0.0/jquery.js" /> 
 
         <title>Club de Tenis</title>
+
     </h:head>
 
     <h:body lang="es" class="container">
-        <!--Space for metadata tags on views with query strings parameters/actions (see visualiza.xhtml) -->
-        <ui:insert name="metadata"/>
 
         <header class="jumbotron">
             <ui:insert name="top"><h1><h:link outcome="/index"><h:graphicImage name="logo.png" library="images"/></h:link> Club de Tenis</h1></ui:insert>
@@ -55,5 +58,7 @@
                 </div>
             </ui:insert>
         </footer>
+
     </h:body>
+</f:view>
 </html>
