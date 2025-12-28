@@ -18,14 +18,14 @@ Features:
 - Persistence.xml configuration with JNDI datasource
 - Optional access control rules
 - JEE Security API options :
-    - IdentityStores: Embedded, Database, Custom
+    - IdentityStores: InMemory, Database, Custom
     - HttpAuthenticationMethods: Basic, Form, CustomJSF Form/controller
 
 ## Requirements
 
-- JDK 17+
-- Jakarta EE 10 Application Server, e.g. Payara 6+
-- WildFly 20+:
+- JDK 17+ (recommended 21)
+- Jakarta EE 11 Application Server, e.g. Payara 7+
+- WildFly 38+:
   - [Requires](https://docs.wildfly.org/27/WildFly_Elytron_Security.html#Elytron_and_Java_Authentication_SPI_for_Containers-JASPI) 
 disabling integrated JASPI to support Jakarta EE Security API. There is a configuration script to apply these 
 changes in https://github.com/wildfly/quickstart/tree/main/ee-security#configure-the-server

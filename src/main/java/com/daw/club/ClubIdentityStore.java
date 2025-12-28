@@ -3,6 +3,7 @@ package com.daw.club;
 import com.daw.club.model.Cliente;
 import com.daw.club.model.ClubPrincipal;
 import com.daw.club.model.dao.ClienteDAO;
+import com.daw.club.qualifiers.DAOJpa;
 import com.daw.club.qualifiers.DAOMap;
 import com.daw.club.services.ClubAuthService;
 import jakarta.enterprise.context.ApplicationScoped;

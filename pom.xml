@@ -14,7 +14,7 @@
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <failOnMissingWebXml>false</failOnMissingWebXml>
-        <jakartaee>10.0.0</jakartaee>
+        <jakartaee>11.0.0</jakartaee>
     </properties>
 
     <dependencies>
@@ -25,14 +25,7 @@
             <artifactId>bootstrap</artifactId>
             <version>4.5.0</version>
         </dependency>
-        <!-- Jakarta Security Reference Implementation: Soteria -->
-        <!-- required for in memory EmbeddedIdentityStore implementation -->
-        <dependency>
-            <groupId>org.glassfish.soteria</groupId>
-            <artifactId>jakarta.security.enterprise</artifactId>
-            <version>3.0.3</version>
-            <scope>provided</scope>
-        </dependency>
+
         <dependency>
             <groupId>jakarta.platform</groupId>
             <artifactId>jakarta.jakartaee-web-api</artifactId>
