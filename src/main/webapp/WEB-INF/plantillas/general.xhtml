@@ -9,11 +9,11 @@
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <!--
-                <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"  />
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"  />
         -->
-        <h:outputStylesheet library="webjars" name="bootstrap/4.5.0/css/bootstrap.min-jsf.css"  />
+        <h:outputStylesheet library="webjars" name="bootstrap/5.3.8/css/bootstrap.min-jsf.css"  />
         <h:outputStylesheet library="css" name="main.css"  />
-        <h:outputScript library="webjars" name="jquery/3.5.1/jquery.js" />
+        <h:outputScript library="webjars" name="bootstrap/5.3.8/js/bootstrap.min.js" />
 
         <title>Club de Tenis</title>
 
@@ -21,8 +21,8 @@
 
     <h:body lang="es" class="container">
 
-        <header class="jumbotron">
-            <ui:insert name="top"><h1><h:link outcome="/index"><h:graphicImage name="logo.png" library="images"/></h:link> Club de Tenis</h1></ui:insert>
+        <header class="card bg-light">
+            <ui:insert name="top"><h1 class="ms-5 my-3 fw-bold"><h:link outcome="/index"><h:graphicImage name="logo.png" library="images"/></h:link> Club de Tenis</h1></ui:insert>
         </header>
         <main class="row">
             <nav id="left" class="col-md-2">
@@ -54,7 +54,7 @@
         <footer id="bottom" class="card bg-light">
             <ui:insert name="bottom">
                 <div class="card-body">
-                    <p class="card-text text-right">Made with <span class="text-danger">❤</span> in DAW</p>
+                    <p class="card-text text-end">Made with <span class="text-danger">❤</span> in DAW</p>
                 </div>
             </ui:insert>
         </footer>
