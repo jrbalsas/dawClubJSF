@@ -1,16 +1,17 @@
 <ui:composition
                 xmlns:ui="jakarta.faces.facelets"
                 xmlns:h="jakarta.faces.html"
+                xmlns:jsf="jakarta.faces"
                 template="./WEB-INF/plantillas/general.xhtml">
     <ui:define name="content">
         <h2>Identificación de usuario</h2>
         <p>(Formulario de autenticación personalizado JSF)</p>
         <h:messages class="alert alert-danger"/>
-        <h:form >
-            <label>Usuario</label><h:inputText value="#{clubLoginController.username}"  class="form-control"/>
-            <label>Clave</label><h:inputSecret value="#{clubLoginController.password}"  class="form-control"/>
-            <h:commandLink class="btn btn-primary" value="Identificarse" action="#{clubLoginController.login()}"/>
-        </h:form>
+        <form jsf:id="fLogin">
+            <label for="idUser">Usuario</label><input type="text" jsf:value="#{clubLoginController.username}" id="idUser" class="form-control"/>
+            <label for="idPass">Clave</label><input type="secret" jsf:value="#{clubLoginController.password}" id="idPass" class="form-control"/>
+            <a class="btn btn-primary" jsf:action="#{clubLoginController.login()}">Identificarse</a>
+        </form>
     </ui:define>
 
 </ui:composition>

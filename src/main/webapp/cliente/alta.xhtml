@@ -2,34 +2,35 @@
                 xmlns:h="jakarta.faces.html"
                 xmlns:f="jakarta.faces.core"
                 xmlns:ui="jakarta.faces.facelets"
-                xmlns:p="jakarta.faces.passthrough"
                 template="/WEB-INF/plantillas/general.xhtml">
 
     <ui:define name="content">
         <h1>Alta Cliente</h1>
         <h:form styleClass="well" >
-            <label>Nombre:</label> <h:inputText styleClass="form-control" label="Nombre" id="idNombre"
-                                                value="#{clienteCtrl.cliente.nombre}" required="true">
+            <h:outputLabel for="idNombre">Nombre:</h:outputLabel>
+                <h:inputText styleClass="form-control" id="idNombre" label="Nombre"
+                             value="#{clienteCtrl.cliente.nombre}" required="true" >
                 <!--f:validateLength minimum="4" maximum="25"/-->
-            </h:inputText>
-            <p><h:message styleClass="form-text text-danger" for="idNombre"  /></p>
-            <label>DNI:</label> <h:inputText styleClass="form-control" label="DNI" id="idDNI" 
+                </h:inputText>
+                <p><h:message styleClass="form-text text-danger" for="idNombre"  /></p>
+            <h:outputLabel for="idDNI">DNI:</h:outputLabel>
+                <h:inputText styleClass="form-control" id="idDNI" label="DNI"
                                              value="#{clienteCtrl.cliente.dni}" required="true">
                 <!--f:validateRegex pattern="\d{7,8}-?[a-zA-Z]" /-->
-            </h:inputText>
-            <p><h:message styleClass="form-text text-danger" for="idDNI" /></p>
-                <div class="form-group form-check">
-                    <h:selectBooleanCheckbox styleClass="form-check-input" value="#{clienteCtrl.cliente.socio}" />
-                    <label class="form-check-label">Socio:</label> 
-                </div>
-            <label>Fecha Nacimiento:</label>
-            <!-- force datepicker html5 input box with p:type="date" -->
-            <h:inputText p:type="date" styleClass="form-control" label="FNac" id="idFNac" value="#{clienteCtrl.cliente.fechaNacimiento}">
-                <!-- convert date to input datepicker LocalDate format-->
-                <f:convertDateTime type="localDate" pattern="yyyy-MM-dd" />
-            </h:inputText>
-            <p><h:message styleClass="form-text text-danger" for="idFNac" /></p>
-            <h:commandButton styleClass="btn btn-primary" value="Guardar" action="#{clienteCtrl.crea}"/>
+                </h:inputText>
+                <p><h:message styleClass="form-text text-danger" for="idDNI" /></p>
+            <div class="form-group form-check">
+                <h:selectBooleanCheckbox styleClass="form-check-input" id="idSocio" value="#{clienteCtrl.cliente.socio}" />
+                <h:outputLabel for="idSocio" styleClass="form-check-label">Socio:</h:outputLabel>
+            </div>
+            <h:outputLabel for="idFNac">Fecha Nacimiento:</h:outputLabel>
+                <!-- force datepicker html5 input box with p:type="date" -->
+                <h:inputText type="date" styleClass="form-control" id="idFNac" value="#{clienteCtrl.cliente.fechaNacimiento}">
+                    <!-- convert date to input datepicker LocalDate format-->
+                    <f:convertDateTime type="localDate" pattern="yyyy-MM-dd" />
+                </h:inputText>
+                <p><h:message styleClass="form-text text-danger" for="idFNac" /></p>
+                <h:commandButton styleClass="btn btn-primary" value="Guardar" action="#{clienteCtrl.crea}"/>
             <h:button styleClass="btn btn-default" value="Cancelar" outcome="listado" />
         </h:form>
     </ui:define>

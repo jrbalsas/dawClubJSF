@@ -1,5 +1,5 @@
     <ui:composition
-                    xmlns:h="jakarta.faces.html"
+                    xmlns:jsf="jakarta.faces"
                     xmlns:ui="jakarta.faces.facelets"
                     template="/WEB-INF/plantillas/general.xhtml">
 
@@ -9,10 +9,10 @@
         </ui:define>
         <ui:define name="left">
             <ul class="nav nav-pills flex-column">
-                <li class="nav-item"><h:link  value="Listado" outcome="listado" class="nav-link" /></li>
-                <li class="nav-item"><h:link  value="Listado Editable" outcome="listado_din" class="nav-link"/></li>
-                <li class="nav-item"><h:link  value="Alta" outcome="alta" class="nav-link"/></li>
-                <li class="nav-item"><h:link  value="Alta Ajax" outcome="alta_ajax" class="nav-link"/></li>
+                <li class="nav-item"><a jsf:outcome="listado" class="nav-link" >Listado</a></li>
+                <li class="nav-item"><a jsf:outcome="listado_din" class="nav-link">Listado Editable</a></li>
+                <li class="nav-item"><a jsf:outcome="alta" class="nav-link">Alta</a></li>
+                <li class="nav-item"><a jsf:outcome="alta_ajax" class="nav-link">Alta Ajax</a></li>
             </ul>
         </ui:define>
     </ui:composition>

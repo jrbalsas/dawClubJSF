@@ -2,12 +2,13 @@
                 xmlns:h="jakarta.faces.html"
                 xmlns:ui="jakarta.faces.facelets"
                 xmlns:f="jakarta.faces.core"
+                xmlns:jsf="jakarta.faces"
                 template="/WEB-INF/plantillas/general.xhtml">
 
     <ui:define name="content">
         <h1>Listado de Clientes </h1>
         <h:messages class="text-danger"/>
-        <h:form>
+        <form jsf:id="fListado">
             <h:dataTable styleClass="table table-striped" var="cliente" value="#{clienteCtrl.clientes}">
                 <h:column>
                     <f:facet name="header">ID</f:facet>
@@ -27,19 +28,18 @@
                 </h:column>
                 <h:column>
                     <f:facet name="header">Opciones</f:facet>
-                    <h:button styleClass="btn btn-light" value="Visualiza" outcome="visualiza">
-                        <f:param name="id" value="#{cliente.id}" /></h:button>&#160;
-                    <h:button styleClass="btn btn-light" value="Edita" outcome="edita" >
-                        <f:param name="id" value="#{cliente.id}" /></h:button>&#160;
-                    <h:commandButton styleClass="btn btn-light" value="Borra" action="#{clienteCtrl.borra(cliente)}" />
+                    <a class="btn btn-light" jsf:outcome="visualiza">
+                        <f:param name="id" value="#{cliente.id}" />Visualiza </a>&#160;
+                    <a class="btn btn-light" jsf:outcome="edita" >
+                        <f:param name="id" value="#{cliente.id}" />Edita</a>&#160;
+                    <a class="btn btn-light" jsf:action="#{clienteCtrl.borra(cliente)}" >Borra</a>
                 </h:column> 
             </h:dataTable>
-        </h:form>
+        </form>
     </ui:define>
     <ui:define name="left">
         <ul class="nav nav-pills flex-column">
-            <li class="nav-item"><h:link value="Clientes" outcome="index" class="nav-link"/></li>
-            <li class="nav-item"><h:link value='Nuevo Cliente' outcome="alta" class="nav-link active"/></li>
+            <li class="nav-item"><a jsf:outcome="alta" class="nav-link active">Nuevo Cliente</a></li>
         </ul>
     </ui:define>
 

@@ -1,8 +1,9 @@
 <ui:composition
-                xmlns:h="jakarta.faces.html"
-                xmlns:ui="jakarta.faces.facelets" xmlns:p="jakarta.faces.passthrough"
-                template="/WEB-INF/plantillas/general.xhtml"
-                xmlns:f="jakarta.faces.core">
+        xmlns:h="jakarta.faces.html"
+        xmlns:ui="jakarta.faces.facelets"
+        xmlns:jsf="jakarta.faces"
+        template="/WEB-INF/plantillas/general.xhtml"
+        xmlns:f="jakarta.faces.core">
     <!-- Retrieve query-string parameters -->
     <ui:define name="metadata">
         <f:metadata>
@@ -16,36 +17,36 @@
 
         <h:messages warnClass="text-warning" infoClass="text-info" errorClass="text-danger"/>
 
-        <ui:fragment  rendered="#{clienteCtrl.cliente != null}">    
+        <div jsf:rendered="#{clienteCtrl.cliente != null}">
 
-            <h:form styleClass="" id="formCliente">
-                <h3>ID: <h:outputText value="#{clienteCtrl.cliente.id}" /></h3><h:inputHidden value="#{clienteCtrl.cliente.id}"/>
-                <label>Nombre:</label> <h:inputText styleClass="form-control" label="Nombre" id="idNombre" value="#{clienteCtrl.cliente.nombre}"
-                                                    required="true" />
+            <form jsf:id="formCliente" class="well">
+                <h3>ID: #{clienteCtrl.cliente.id}</h3>
+                <label jsf:for="idNombre">Nombre: </label>
+                    <input type="text" jsf:id="idNombre" class="form-control" jsf:value="#{clienteCtrl.cliente.nombre}"
+                           required="true" />
                 <p><h:message styleClass="form-text text-danger" for="idNombre" /></p>
-                <label>DNI:</label> <h:inputText styleClass="form-control" label="DNI" id="idDNI" value="#{clienteCtrl.cliente.dni}"
+                <label jsf:for="idDNI">DNI:</label> <input type="text" jsf:id="idDNI" class="form-control" label="DNI"  jsf:value="#{clienteCtrl.cliente.dni}"
                                                  required="true" />
                 <p><h:message styleClass="form-text text-danger" for="idDNI" /></p>
                 <div class="form-group form-check">
-                    <h:selectBooleanCheckbox styleClass="form-check-input" value="#{clienteCtrl.cliente.socio}" />
-                    <label class="form-check-label">Socio:</label> 
+                    <input jsf:id="idSocio" type="checkbox" class="form-check-input" jsf:value="#{clienteCtrl.cliente.socio}" />
+                    <label class="form-check-label" jsf:for="idSocio">Socio</label>
                 </div>
-                <label>Fecha Nacimiento:</label>
-                    <!-- force datepicker html5 input box with p:type="date" -->
-                    <h:inputText p:type="date" styleClass="form-control" label="FNac" id="idFNac" value="#{clienteCtrl.cliente.fechaNacimiento}">
+                <label jsf:for="idFNac">Fecha Nacimiento:</label>
+                    <input jsf:id="idFNac" type="date" class="form-control" jsf:value="#{clienteCtrl.cliente.fechaNacimiento}">
                         <!-- convert date to input datepicker LocalDate format-->
                         <f:convertDateTime type="localDate" pattern="yyyy-MM-dd" />
-                    </h:inputText>
+                    </input>
                 <p><h:message styleClass="form-text text-danger" for="idFNac" /></p>
-                <h:commandButton styleClass="btn btn-primary" value="Guardar" action="#{clienteCtrl.guarda}"/>
-                <h:button styleClass="btn btn-cancel" value="Cancelar" outcome="listado" />
-            </h:form>
-        </ui:fragment>
+                <button class="btn btn-primary" jsf:action="#{clienteCtrl.guarda}">Guardar</button>
+                <a class="btn btn-cancel" jsf:outcome="listado" jsf:inmediate="true">Cancelar</a>
+            </form>
+        </div>
     </ui:define>
 
     <ui:define name="left">
         <ul class="nav nav-pills flex-column">
-            <li class="nav-item"><h:link value="Volver" outcome="index" class="nav-link "/></li>
+            <li class="nav-item"><a jsf:outcome="index" class="nav-link ">Volver</a></li>
         </ul>
     </ui:define>
 
