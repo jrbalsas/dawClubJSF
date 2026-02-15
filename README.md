@@ -18,7 +18,7 @@ Features:
 - Persistence.xml configuration with JNDI datasource
 - Optional access control rules
 - JEE Security API options :
-    - IdentityStores: Embedded, Database, Custom
+    - IdentityStores: InMemory, Database, Custom
     - HttpAuthenticationMethods: Basic, Form, CustomJSF Form/controller
 - Upload entity images on external folder
 - Specialized Servlet for downloading entity external images ``ClienteImageServlet``
@@ -26,9 +26,9 @@ Features:
 
 ## Requirements
 
-- JDK 17+
-- Jakarta EE 10 Application Server, e.g. Payara 6+
-- WildFly 20+:
+- JDK 17+ (recommended 21)
+- Jakarta EE 11 Application Server, e.g. Payara 7+
+- WildFly 38+:
   - [Requires](https://docs.wildfly.org/27/WildFly_Elytron_Security.html#Elytron_and_Java_Authentication_SPI_for_Containers-JASPI) 
 disabling integrated JASPI to support Jakarta EE Security API. There is a configuration script to apply these 
 changes in https://github.com/wildfly/quickstart/tree/main/ee-security#configure-the-server
@@ -36,7 +36,6 @@ changes in https://github.com/wildfly/quickstart/tree/main/ee-security#configure
 
 ## Usage
 - Compile and deploy in a JEE Application Server
-- By default, uploaded user images are placed on ``<<User_home_dir>>/webapp-data/customerimg`` folder. Change it on ``application.properties`` file 
 
 ### DB Access:
 1. Configure JEE Datasource in web.xml
