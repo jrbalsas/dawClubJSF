@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:ui="jakarta.faces.facelets"
       xmlns:h="jakarta.faces.html"
+      xmlns:jsf="jakarta.faces"
       xmlns:f="jakarta.faces.core">
 <f:view>
     <!--Space for metadata tags on views with query strings parameters/actions (see visualiza.xhtml) -->
@@ -9,20 +10,21 @@
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <!--
-                <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"  />
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"  />
         -->
-        <h:outputStylesheet library="webjars" name="bootstrap/4.4.1/css/bootstrap.min-jsf.css"  />
-        <h:outputStylesheet library="css" name="main.css"  />
-        <h:outputScript library="webjars" name="jquery/3.0.0/jquery.js" /> 
+        <link jsf:library="webjars" jsf:name="bootstrap/5.3.8/css/bootstrap.min-jsf.css"  />
+        <link jsf:library="css" jsf:name="main.css"  />
+        <script jsf:library="webjars" jsf:name="bootstrap/5.3.8/js/bootstrap.min.js" ></script>
 
         <title>Club de Tenis</title>
 
     </h:head>
 
-    <h:body lang="es" class="container">
-
-        <header class="jumbotron">
-            <ui:insert name="top"><h1><h:link outcome="/index"><h:graphicImage name="logo.png" library="images"/></h:link> Club de Tenis</h1></ui:insert>
+    <h:body lang="es" styleClass="container">
+        <!-- Enable JSF debug window view -->
+        <ui:debug hotkey="x"/>
+        <header class="card bg-light">
+            <ui:insert name="top"><h1 class="ms-5 my-3 fw-bold"><a jsf:outcome="/index"><img jsf:name="logo.png" jsf:library="images"/></a> Club de Tenis</h1></ui:insert>
         </header>
         <main class="row">
             <nav id="left" class="col-md-2">
@@ -31,17 +33,17 @@
                 <ul class="nav nav-pills flex-column">                                    
                     <!--Sample Personalized Logout button-->
                     <!--Enable access control (web.xml) to show it after login-->
-                    <h:panelGroup rendered="#{not empty request.userPrincipal}">
+                    <div jsf:rendered="#{not empty request.userPrincipal}">
                         <!-- Custom ClubPrincipal properties can be used, e.g.: request.userPrincipal.usuario.nombre -->
                         <li class="nav-item">
-                            <h:form styleClass="">
-                                <h:commandLink styleClass="nav-link active bg-warning text-dark"
-                                             action="#{clubLoginController.logout}"
-                                             value="Logout #{request.userPrincipal.name}"/>
-                            </h:form>
+                            <form jsf:id="fLogout" class="">
+                                <a class="nav-link active bg-warning text-dark"
+                                             jsf:action="#{clubLoginController.logout}">
+                                    Logout #{request.userPrincipal.name}</a>
+                            </form>
                         </li>
-                    </h:panelGroup>
-                    <li class="nav-item">  <h:link outcome="/index" value="Inicio" class="nav-link"/></li>
+                    </div>
+                    <li class="nav-item">  <a jsf:outcome="/index" class="nav-link">Inicio</a></li>
                 </ul>                
 
                 <ui:insert name="left"><!--left content--></ui:insert>
@@ -54,11 +56,10 @@
         <footer id="bottom" class="card bg-light">
             <ui:insert name="bottom">
                 <div class="card-body">
-                    <p class="card-text text-right">Made with <span class="text-danger">❤</span> in DAW</p>
+                    <p class="card-text text-end">Made with <span class="text-danger">❤</span> in DAW</p>
                 </div>
             </ui:insert>
         </footer>
-
     </h:body>
 </f:view>
 </html>

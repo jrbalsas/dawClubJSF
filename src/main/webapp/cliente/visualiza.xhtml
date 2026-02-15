@@ -3,9 +3,11 @@
                 xmlns:f="jakarta.faces.core"
                 xmlns:ui="jakarta.faces.facelets"
                 xmlns:h="jakarta.faces.html"
+                xmlns:jsf="jakarta.faces"
                 xmlns:daw="jakarta.faces.composite/dawcomp">
+
+    <!-- Retrieve query-string parameters -->
     <ui:define name="metadata">
-        <!-- Retrieve query-string parameters -->
         <f:metadata>
             <f:viewParam name="id" value="#{clienteCtrl.cliente.id}"/>
             <f:viewAction action="#{clienteCtrl.recupera()}" />
@@ -17,20 +19,20 @@
 
             <h1 class="panel-heading">Visualiza Cliente</h1>
             <h:messages class="text-danger"/>
-            <ui:fragment  rendered="#{clienteCtrl.cliente != null}">    
+            <div jsf:rendered="#{clienteCtrl.cliente != null}">
 
                 <!-- use custom composite component -->
                 <daw:cliente value="#{clienteCtrl.cliente}"/>
-                
-                <h:form>
 
-                    <h:button styleClass="btn btn-primary" value="Editar" outcome="edita">
+                <form jsf:id="fCliente">
+                    <button class="btn btn-primary" jsf:outcome="edita">
+                        Editar
                         <f:param name="id" value="#{clienteCtrl.cliente.id}"/>
-                    </h:button>
-                    <h:commandButton styleClass="btn btn-danger" value="Borrar" action="#{clienteCtrl.borra}"/>
-                    <h:link styleClass="btn btn-default" value="Volver" outcome="listado" />
-                </h:form>
-            </ui:fragment>
+                    </button>
+                    <button class="btn btn-danger" jsf:action="#{clienteCtrl.borra}">Borrar</button>
+                    <a class="btn btn-default" jsf:outcome="listado">Volver</a>
+                </form>
+            </div>
 
         </div>
     </ui:define>

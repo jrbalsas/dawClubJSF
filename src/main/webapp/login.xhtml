@@ -1,16 +1,16 @@
 <ui:composition
-                xmlns:ui="jakarta.faces.facelets"
-                xmlns:h="jakarta.faces.html"
-                template="./WEB-INF/plantillas/general.xhtml">
+        xmlns:ui="jakarta.faces.facelets"
+        xmlns:jsf="jakarta.faces"
+        template="./WEB-INF/plantillas/general.xhtml">
     <ui:define name="content">
         <h2>Identificación de usuario </h2>
         <p>(Formulario de autenticación estándar)</p>
-         <h:panelGroup rendered="#{param.error!=null}">
+         <div jsf:rendered="#{param.error!=null}">
             <p class="alert alert-danger">Error de autenticación</p>
-        </h:panelGroup>
+         </div>
         <form action="j_security_check" method="POST">
-            <label>Usuario</label><input class="form-control" type="text" name="j_username"/>
-            <label>Clave</label><input class="form-control" type="password" name="j_password"/>
+            <label for="idUser">Usuario</label><input class="form-control" type="text" id="idUser" name="j_username"/>
+            <label for="idPass">Clave</label><input class="form-control" type="password" id="idPass" name="j_password"/>
             <input class="btn btn-primary" type="submit" value="Identificarse"/>
         </form>
     </ui:define>

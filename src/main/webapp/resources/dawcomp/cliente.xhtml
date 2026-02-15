@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html
-      xmlns:cc="jakarta.faces.composite" xmlns:h="jakarta.faces.html"
-      xmlns:f="jakarta.faces.core">
+      xmlns:cc="jakarta.faces.composite"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core"
+      xmlns:jsf="jakarta.faces">
 
     <!-- Sample Composite component for rendering a entity -->
     
@@ -17,9 +19,9 @@
             <h:graphicImage styleClass="col-md-4 img-fluid rounded"
                             rendered="#{empty(cc.attrs.value.imageFileName)}"
                             library="images" name="cliente.png" />
-            <h:graphicImage styleClass="col-md-4 img-fluid rounded"
-                            rendered="#{not empty(cc.attrs.value.imageFileName)}"
-                            value="#{app.getProperty('customer.images')}/#{cc.attrs.value.imageFileName}" />
+            <img class="col-md-4 img-fluid rounded"
+                            jsf:rendered="#{not empty(cc.attrs.value.imageFileName)}"
+                            jsf:value="#{app.getProperty('customer.images')}/#{cc.attrs.value.imageFileName}" />
             <ul class="col-md-8 panel-body list-group">
 
                 <li class="list-group-item"><strong>ID:</strong> #{cc.attrs.value.id}</li>

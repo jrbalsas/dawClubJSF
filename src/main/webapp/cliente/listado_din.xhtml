@@ -2,6 +2,7 @@
                 xmlns:h="jakarta.faces.html"
                 xmlns:ui="jakarta.faces.facelets"
                 xmlns:f="jakarta.faces.core"
+                xmlns:jsf="jakarta.faces"
                 template="/WEB-INF/plantillas/general.xhtml">
 
     <ui:define name="content">
@@ -47,7 +48,7 @@
     </ui:define>
     <ui:define name="left">
         <ul class="nav nav-pills flex-column">
-            <li class="nav-item"><h:link value='Nuevo Cliente' outcome="alta" class="nav-link active" /></li>
+            <li class="nav-item"><a jsf:outcome="alta" class="nav-link active" >Nuevo Cliente</a></li>
         </ul>
     </ui:define>
 
