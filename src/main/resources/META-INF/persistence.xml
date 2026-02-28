@@ -7,8 +7,7 @@
 <!-- Select JPA implementation if needed-->        
 <!--        <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>-->
 <!--        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>-->
-        <!-- Use JNDI Datasource (e.g. JEE connection pool in web.xml) 
-             Uncomment below if Datasource connection is working -->
+        <!-- Use JNDI Datasource (e.g. JEE connection pool in web.xml)  -->
         <jta-data-source>java:global/jdbc/gestClub</jta-data-source>
         <properties>
             <!-- JPA table creation and populate for managed entities on starting app  -->

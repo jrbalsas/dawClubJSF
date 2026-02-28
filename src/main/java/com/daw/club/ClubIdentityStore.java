@@ -3,7 +3,6 @@ package com.daw.club;
 import com.daw.club.model.Cliente;
 import com.daw.club.model.ClubPrincipal;
 import com.daw.club.model.dao.ClienteDAO;
-import com.daw.club.qualifiers.DAOJpa;
 import com.daw.club.qualifiers.DAOMap;
 import com.daw.club.services.ClubAuthService;
 import jakarta.enterprise.context.ApplicationScoped;
@@ -30,11 +29,11 @@ public class ClubIdentityStore implements IdentityStore {
     private static final Logger logger = Logger.getLogger(ClubIdentityStore.class.getName());
 
     @Inject
-    private ClubAuthService authService;
+    transient private ClubAuthService authService;
 
     @Inject @DAOMap
-    //@Inject @DAOJpa
-    private ClienteDAO clientesDAO;
+    //@Inject @DAOJData
+    transient private ClienteDAO clientesDAO;
 
     public ClubIdentityStore() {
     }

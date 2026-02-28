@@ -2,7 +2,6 @@ package com.daw.club;
 
 import com.daw.club.model.Cliente;
 import com.daw.club.model.dao.ClienteDAO;
-import com.daw.club.qualifiers.DAOJpa;
 import com.daw.club.qualifiers.DAOMap;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.event.Observes;
@@ -74,8 +73,8 @@ import java.util.logging.Logger;
 public class AppConfig {
 
         @Inject @DAOMap
-        //@Inject @DAOJpa
-        ClienteDAO clienteDAO;
+        //@Inject @DAOJData
+        transient private ClienteDAO clienteDAO;
 
         private Logger logger = Logger.getLogger(AppConfig.class.getName());
 

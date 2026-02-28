@@ -4,7 +4,6 @@ import com.daw.club.AppConfig;
 import com.daw.club.model.Cliente;
 import com.daw.club.model.ClubPrincipal;
 import com.daw.club.model.dao.ClienteDAO;
-import com.daw.club.qualifiers.DAOJpa;
 import com.daw.club.qualifiers.DAOMap;
 import jakarta.annotation.PostConstruct;
 import jakarta.faces.application.FacesMessage;
@@ -30,9 +29,10 @@ public class ClienteController implements Serializable {
     private final Logger logger = Logger.getLogger(ClienteController.class.getName());
 
     //Business logic
+
     @Inject @DAOMap     //Inject DAO Map testing implementation
-    //@Inject @DAOJpa   //JPA DAO implementation
-    private ClienteDAO clienteDAO;
+    //@Inject @DAOJData   //Select Jakarta Data DAO Implementation
+    transient private ClienteDAO clienteDAO;
 
     @Inject
     FacesContext fc; //Interaction with Faces front-controller
