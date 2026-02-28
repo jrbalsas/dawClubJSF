@@ -2,4 +2,16 @@
 <!DOCTYPE payara-web-app PUBLIC "-//Payara.fish//DTD Payara Server 4 Servlet 3.0//EN" "https://docs.payara.fish/schemas/payara-web-app_4.dtd">
 <payara-web-app error-url="">
   <class-loader delegate="true"/>
+  <!-- Glassfish/Payara only: Alias URL for sharing static contents in server filesystem: images, pdf, etc.
+       1.- Create a base folder on server filesystem for sharing resources e.g /www-shared or c:/www-shared
+       2.- Assign base folder to "dir" attribute using an absolute path, e.g. dir=/www-shared or dir=c:/www-shared. ${user.home} can be used to refer to user home folder, e.g. dir=/${user.home}/www-shared
+       3.- Create a subfolder in base folder to place static contents to be shared, e.g. /www-shared/images or c:/www-shared/images
+       4.- Assign subfolder relative path file pattern to "from" attribute to establish public url of files in web server, e.g. from=/images/*
+       5.- Shared files can be accessed using subfolder pathinfo in URLs, e.g. http://server:port/appname/images/filename.png
+       Samples:
+    -->
+    <!--
+      <property name="alternatedocroot_1" value="from=/clienteimg/* dir=/${user.home}/webapp-data" />
+      <property name="alternatedocroot_2" value="from=/docs/* dir=/${user.home}/webapp-data" />
+    -->
 </payara-web-app>

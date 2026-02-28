@@ -47,3 +47,6 @@ changes in https://github.com/wildfly/quickstart/tree/main/ee-security#configure
 2. Uncomment required HttpAuthenticationMechanism in AppConfig class. Standard Form by default
 3. Uncomment preferred IdentityStore/s in AppConfig class if required.
 4. Custom ClubIdentityStore available by default. Select Map or JData DAOs implementation to access user credentials.
+
+### Access to static shared resources in Server
+1. Configure server shared folder in WEB-INF/payara-web.xml
